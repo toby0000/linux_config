@@ -1,3 +1,6 @@
+[user]
+	name = Toby
+	email = toby.lee@foxmail.com
 [include]
 	path = .gitconfig.local
 [core]
