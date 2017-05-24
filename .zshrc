@@ -84,6 +84,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
-source ~/bin/mytool.sh
+source ~/.bin/config.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
