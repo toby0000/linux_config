@@ -6,9 +6,8 @@ install-bin:
 	ln -s `pwd`/bin ~/bin
 
 install-nvim:
-	rm -rf ~/.config/nvim/*.vim
-	ln -s `pwd`/nvim/init.vim ~/.config/nvim/
-	ln -s `pwd`/nvim/google_python_style.vim ~/.config/nvim/
+	rm -rf ~/.config/nvim
+	ln -s `pwd`/nvim ~/.config/nvim
 
 install-zsh:
 	rm -rf ~/.zshrc
