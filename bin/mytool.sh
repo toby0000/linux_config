@@ -1,5 +1,20 @@
 #!/bin/bash
 
+color()
+{
+    set -x
+    echo -e '\e[1;40m black \e[m'
+    echo -e '\e[1;41m red \e[m'
+    echo -e '\e[1;42m green \e[m'
+    echo -e '\e[1;43m yellow \e[m'
+    echo -e '\e[1;44m blue \e[m'
+    echo -e '\e[1;45m magenta \e[m'
+    echo -e '\e[1;46m cyan \e[m'
+    echo -e '\e[1;47m white \e[m'
+    set +x
+}
+
+
 # common
 # set -o vi
 export TERM=xterm-256color
