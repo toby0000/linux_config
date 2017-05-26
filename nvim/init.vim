@@ -101,13 +101,8 @@ inoremap <c-b> <left>
 inoremap <c-f> <right>
 inoremap <c-a> <home>
 inoremap <c-e> <end>
+inoremap <c-d> <del>
 inoremap <c-j> <esc>o
-"inoremap " ""<esc>i
-"inoremap ' ''<esc>i
-"inoremap < <><esc>i
-"inoremap ( ()<esc>i
-"inoremap [ []<esc>i
-"inoremap { {}<esc>i
 
 "ex mode keymap
 cnoremap <c-d> <del>
