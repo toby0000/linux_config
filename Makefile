@@ -1,4 +1,4 @@
-dotfiles: install-nvim install-zsh install-git install-bin
+dotfiles: install-bin install-nvim install-zsh install-git install-fzf install-pip
 
 install-bin:
 	rm -rf ~/.bin
