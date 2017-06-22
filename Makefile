@@ -15,3 +15,9 @@ install-zsh:
 install-git:
 	rm -rf ~/.gitconfig
 	ln -s `pwd`/.gitconfig ~/.gitconfig
+
+install-fzf:
+	rm -rf ~/.fzf.zsh
+	ln -s `pwd`/.fzf.zsh ~/.fzf.zsh
+
+install-pip:
