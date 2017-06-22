@@ -1,5 +1,6 @@
 " vim-plug
-call plug#begin('~/.vim/plugged')
+let plugged='~/.config/nvim/plugged/'
+call plug#begin(plugged)
 Plug 'davidhalter/jedi-vim'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'  }
@@ -14,15 +15,16 @@ Plug 'Shougo/deoplete.nvim'
 Plug 'zchee/deoplete-jedi'
 Plug 'ervandew/supertab'
 Plug 'neomake/neomake'
-Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdcommenter'
 Plug 'mileszs/ack.vim'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'junegunn/vim-easy-align'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'sjl/gundo.vim'
-Plug '~/.vim/plugged/Solarized'
-Plug '~/.vim/plugged/mark.vim'
+Plug plugged.'Solarized'
+Plug plugged.'mark.vim'
 call plug#end()
 
 scriptencoding utf-8
@@ -87,6 +89,7 @@ nnoremap <leader>q :q<cr>
 nnoremap <leader>w :w<cr>
 nnoremap <leader>e :qa<cr>
 nnoremap <leader>x :x<cr>
+
 vnoremap <leader>" di""<esc>P
 vnoremap <leader>' di''<esc>P
 vnoremap <leader>< di<><esc>P
@@ -116,10 +119,10 @@ tnoremap <c-q> <c-\><c-n>
 "tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 let $CONF = "~/.config/nvim/init.vim"
 
-nnoremap <silent> <leader>C :!rm ~/.local/share/nvim/swap/* -rf<cr>
+nnoremap <leader>C :!rm ~/.local/share/nvim/swap/* -rf<cr>
 nnoremap <leader>T :vs term://bash<cr>a
 
-nnoremap <silent> <leader><leader>/ :nohlsearch<CR>
+nnoremap <leader><leader>/ :nohlsearch<CR>
 
 " mark.vim
 nnoremap <leader>c :MarkClear<cr>
@@ -138,13 +141,13 @@ set t_Co=256
 " set term=screen-256color
 
 " tagbar
-nnoremap <silent> <leader>t :TagbarToggle<CR>
+nnoremap <leader>t :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 set updatetime=1000
 
 " NERDTree
-nnoremap <silent> <leader>nt :NERDTreeToggle<CR>
-nnoremap <silent> <leader>nf :NERDTreeFind<CR>
+nnoremap <leader>nt :NERDTreeToggle<CR>
+nnoremap <leader>nf :NERDTreeFind<CR>
 
 let OmniCpp_NamespaceSearch = 2 "search namespaces in the current buffer and in include files
 
@@ -255,5 +258,6 @@ au BufNewFile,BufRead *.js, *.html, *.css
             \ set shiftwidth=2
 
 nnoremap <f10> :!python %<cr>
+nnoremap <f9> :!python3 %<cr>
 source ~/.config/nvim/google_python_style.vim
 "autocmd FileType python set makeprg=pylint\ --reports=n\ --msg-template=\"{path}:{line}:\ {msg_id}\ {symbol},\ {obj}\ {msg}\"\ %:p autocmd FileType python set errorformat=%f:%l:\ %m
