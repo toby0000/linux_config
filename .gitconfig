@@ -1,8 +1,5 @@
-[user]
-	name = Toby
-	email = toby.lee@foxmail.com
 [include]
-	path = .gitconfig.local
+	path = .local_gitconfig
 [core]
     editor = nvim
 [color]
