@@ -1,6 +1,6 @@
 " vim-plug
-let plugged='~/.config/nvim/plugged/'
-call plug#begin(plugged)
+let plug_path='~/.config/nvim/plugged/'
+call plug#begin(plug_path)
 Plug 'davidhalter/jedi-vim'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'  }
@@ -23,13 +23,14 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'sjl/gundo.vim'
-Plug plugged.'Solarized'
-Plug plugged.'mark.vim'
+Plug plug_path.'Solarized'
+Plug plug_path.'mark.vim'
 call plug#end()
 
 scriptencoding utf-8
 syntax on
 syntax enable
+set undofile
 set mouse=                 " disable mouse usage
 set background=dark
 set mousehide               " Hide the mouse cursor while typing

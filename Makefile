@@ -1,8 +1,8 @@
 dotfiles: install-nvim install-zsh install-git install-bin
 
 install-bin:
-	rm -rf ~/bin
-	ln -s `pwd`/bin ~/bin
+	rm -rf ~/.bin
+	ln -s `pwd`/.bin ~/.bin
 
 install-nvim:
 	rm -rf ~/.config/nvim

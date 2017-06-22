@@ -38,7 +38,7 @@ alias py3='source ~/.env/py3/bin/activate'
 alias web='py2 && cd ~/cnns/cid && python manager.py start'
 
 # config_local
-[[ -f config_local.sh ]] && source config_local.sh
+[[ -f local_config.sh ]] && source local_config.sh
 
 # install commond
 ins()
