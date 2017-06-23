@@ -1,7 +1,6 @@
-#!/usr/bin/env sh
+#!/bin/bash
 
 LINUX_CONFIG_PATH=$(dirname $(readlink -f $0))
-echo $LINUX_CONFIG_PATH
 
 ins_nvim()
 {
@@ -47,11 +46,10 @@ ins_zsh()
 ins_fzf()
 {
 	if [[ -e ~/.fzf ]]; then
-		git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-	else
 		(cd ~/.fzf; git pull)
+	else
+		git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 	fi
-	pwd
 	sudo ~/.fzf/install
 }
 
@@ -60,6 +58,7 @@ init()
 	ins_python
 	ins_nvim
 	ins_zsh
+	ins_fzf
 	make -C $LINUX_CONFIG_PATH
 }
 
