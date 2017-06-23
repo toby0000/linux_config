@@ -41,4 +41,5 @@ VIMRUNTIME="$(nvim -e --cmd 'echo $VIMRUNTIME|quit' 2>&1)"
 
 
 # local_config
-[[ -f $MY_BIN_PATH/local_config.sh ]] && source local_config.sh
+CONFIG_LOCAL=local_config.sh
+[[ -f $MY_BIN_PATH/$CONFIG_LOCAL ]] && source $CONFIG_LOCAL

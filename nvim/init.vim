@@ -223,6 +223,11 @@ let g:NERDDefaultAlign = 'left'
 let g:ackprg = 'ag --vimgrep --smart-case -w'
 nnoremap <leader>a :Ack!<cr>
 
+" vim-easy-align
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+
+
 " not need to set follow config when use nvim
 "set encoding=utf-8
 "set termencoding=cp936
