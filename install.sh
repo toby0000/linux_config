@@ -1,4 +1,5 @@
 #!/bin/bash
+# 该脚本用来安装各类软件
 
 LINUX_CONFIG_PATH=$(dirname $(readlink -f $0))
 
@@ -53,6 +54,7 @@ ins_fzf()
 	sudo ~/.fzf/install
 }
 
+# 用于装完系统后安装各类工具
 init()
 {
 	ins_python
@@ -62,10 +64,30 @@ init()
 	make -C $LINUX_CONFIG_PATH
 }
 
+# 安装用于nvim的python插件
 ins_py_nvim()
 {
 	pip install -U pip, neovim, ipython, jedi, flake8, pep8, pylint
 }
 
+help()
+{
+	cat << EOF
+Usage: ./install [OPT]
+OPT:
+	ins_python : 安装python以及虚拟环境
+	ins_nvim   : 安装nvim以及相关插件
+	ins_zsh    : 安装zsh
+	ins_fzf    : 安装fzf
+	init       : 执行ins_python, ins_nvim, ins_zsh, ins_fzf, make
+	ins_py_nvim: 安装nvim的python插件
+EOF
+}
+
 # main
-$1
+if [[ -z $1 || $1 == '-h' || $1 == '--help' ]]; then
+	help
+else
+	$1
+fi
+

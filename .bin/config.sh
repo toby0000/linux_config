@@ -30,14 +30,15 @@ alias ff='find -type f -name'
 alias fgrep='find -name "*.[c|h]" -o -name "*.cpp" -o -name "*.java" | xargs grep --color -Hn'
 alias vi='nvim'
 alias vim='nvim'
+
+#python config
 alias ls='ls --hide="*.pyc" --color'
+alias py2='source ~/.env/py2/bin/activate'
+alias py3='source ~/.env/py3/bin/activate'
 
 # nvim
 VIMRUNTIME="$(nvim -e --cmd 'echo $VIMRUNTIME|quit' 2>&1)"
 
-alias py2='source ~/.env/py2/bin/activate'
-alias py3='source ~/.env/py3/bin/activate'
-alias web='py2 && cd ~/cnns/cid && python manager.py start'
 
 # local_config
 [[ -f $MY_BIN_PATH/local_config.sh ]] && source local_config.sh
