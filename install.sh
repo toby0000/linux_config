@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 
-LINUX_CONFIG_PATH=$(readlink -f $0)
+LINUX_CONFIG_PATH=$(dirname $(readlink -f $0))
+echo $LINUX_CONFIG_PATH
 
 ins_nvim()
 {
@@ -41,6 +42,17 @@ ins_zsh()
 	sudo apt-get -y zsh
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 	make -C $LINUX_CONFIG_PATH install-zsh
+}
+
+ins_fzf()
+{
+	if [[ -e ~/.fzf ]]; then
+		git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+	else
+		(cd ~/.fzf; git pull)
+	fi
+	pwd
+	sudo ~/.fzf/install
 }
 
 init()

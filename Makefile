@@ -1,4 +1,5 @@
-dotfiles: install-bin install-nvim install-zsh install-git install-fzf install-pip
+dotfiles: install-bin install-nvim install-zsh install-git \
+	install-pip
 
 install-bin:
 	rm -rf ~/.bin
@@ -16,8 +17,6 @@ install-git:
 	rm -rf ~/.gitconfig
 	ln -s `pwd`/.gitconfig ~/.gitconfig
 
-install-fzf:
-	rm -rf ~/.fzf.zsh
-	ln -s `pwd`/.fzf.zsh ~/.fzf.zsh
-
 install-pip:
+	rm -rf ~/.pip
+	ln -s `pwd`/.pip ~/.pip
