@@ -18,7 +18,7 @@ ins_nvim()
 	sudo update-alternatives --config editor
 
 	# install plug.vim
-	sudo apt-get -y install curl
+	sudo apt-get install -y curl
 	curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	# install nvim config && plugin
 	make -C $LINUX_CONFIG_PATH install-nvim
@@ -27,8 +27,8 @@ ins_nvim()
 
 ins_python()
 {
-	sudo apt-get install python python-dev python-pip
-	sudo apt-get install python3 python-dev python3-pip
+	sudo apt-get install -y python python-dev python-pip
+	sudo apt-get install -y python3 python-dev python3-pip
 	make -C $LINUX_CONFIG_PATH install-pip
 	sudo pip install -U pip
 	sudo pip install virtualenv
@@ -39,7 +39,7 @@ ins_python()
 
 ins_zsh()
 {
-	sudo apt-get -y zsh
+	sudo apt-get install -y zsh
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 	make -C $LINUX_CONFIG_PATH install-zsh
 }
