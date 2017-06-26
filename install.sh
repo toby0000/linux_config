@@ -67,7 +67,12 @@ init()
 # 安装用于nvim的python插件
 ins_py_nvim()
 {
-	pip install -U pip, neovim, ipython, jedi, flake8, pep8, pylint
+	pip install -U pip neovim jedi flake8 pep8 pylint
+	if [[ -n $(python -V 2>&1 | grep -P '2\.7\.') ]]; then
+		pip install ipython==5.4.1
+	else
+		pip install ipython
+	fi
 }
 
 help()

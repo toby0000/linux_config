@@ -22,5 +22,5 @@ install-pip:
 	ln -s `pwd`/.pip ~/.pip
 
 install-ins:
-	rm .bin/install.sh
-	ln -s `pwd`/install .bin/install.sh
+	rm -rf `pwd`/.bin/install.sh
+	ln -s `pwd`/install.sh `pwd`/.bin/install.sh
