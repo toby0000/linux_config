@@ -1,5 +1,5 @@
 dotfiles: install-bin install-nvim install-zsh install-git \
-	install-pip
+	install-pip install-ins
 
 install-bin:
 	rm -rf ~/.bin
@@ -20,3 +20,7 @@ install-git:
 install-pip:
 	rm -rf ~/.pip
 	ln -s `pwd`/.pip ~/.pip
+
+install-ins:
+	rm .bin/install.sh
+	ln -s `pwd`/install .bin/install.sh

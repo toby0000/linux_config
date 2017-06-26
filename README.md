@@ -6,6 +6,9 @@ install.sh: 用于安装各类工具
 Makefile: 用于安装各类配置文件
 
 # 使用方法
+## 下载
+git clone https://github.com/toby0000/linux_config ~/.linux_config
+
 ## install.sh
 install -h|--help: 查看帮助
 
