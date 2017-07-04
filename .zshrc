@@ -51,7 +51,9 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git autojump)
+plugins=(git autojump colored-man-pages zsh_reload pip sudo \
+	extract urltools encode64 django python celery supervisord \
+	zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -84,6 +86,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 source ~/.bin/config.sh
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

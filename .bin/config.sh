@@ -31,15 +31,25 @@ alias fgrep='find -name "*.[c|h]" -o -name "*.cpp" -o -name "*.java" | xargs gre
 alias vi='nvim'
 alias vim='nvim'
 
-#python config
+# python config
 alias ls='ls --hide="*.pyc" --color'
 alias py2='source ~/.env/py2/bin/activate'
 alias py3='source ~/.env/py3/bin/activate'
+# pip必须在virtualenv环境下执行
+export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
+export PIP_REQUIRE_VIRTUALENV=true
+gpip() {
+	PIP_REQUIRE_VIRTUALENV="" pip "$@"
+
+}
 
 # nvim
 VIMRUNTIME="$(nvim -e --cmd 'echo $VIMRUNTIME|quit' 2>&1)"
 
-
 # local_config
 CONFIG_LOCAL=local_config.sh
 [[ -f $MY_BIN_PATH/$CONFIG_LOCAL ]] && source $CONFIG_LOCAL
+
+# thefuck config (need exec after py2 or py3 )
+eval $(thefuck --alias)
+alias f='fuck'

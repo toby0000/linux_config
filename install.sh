@@ -1,6 +1,11 @@
 #!/bin/bash
 # 该脚本用来安装各类软件
 
+# 使用未声明变量时退出
+# set -u
+# 遇到错误时退出
+set -e
+
 LINUX_CONFIG_PATH=$(dirname $(readlink -f $0))
 
 ins_nvim()
@@ -54,20 +59,33 @@ ins_fzf()
 	sudo ~/.fzf/install
 }
 
+ins_other()
+{
+	# zsh plugin
+	sudo apt-get install -y autojump silversearcher-ag
+	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+}
+
 # 用于装完系统后安装各类工具
 init()
 {
 	ins_python
 	ins_nvim
-	ins_zsh
 	ins_fzf
+	ins_other
 	make -C $LINUX_CONFIG_PATH
+	# zsh必须在最后安装，由于它会将终端切到zsh，从而中断脚本
+	ins_zsh
 }
 
 # 安装用于nvim的python插件
-ins_py_nvim()
+ins_pytools()
 {
+	# nvim
 	pip install -U pip neovim jedi flake8 pep8 pylint
+
+	# tools
+	pip install thefuck pipreqs
 	if [[ -n $(python -V 2>&1 | grep -P '2\.7\.') ]]; then
 		pip install ipython==5.4.1
 	else
@@ -84,8 +102,8 @@ OPT:
 	ins_nvim   : 安装nvim以及相关插件
 	ins_zsh    : 安装zsh
 	ins_fzf    : 安装fzf
-	init       : 执行ins_python, ins_nvim, ins_zsh, ins_fzf, make
-	ins_py_nvim: 安装nvim的python插件
+	init       : 执行ins_python, ins_nvim, ins_zsh, ins_fzf, ins_other, make
+	ins_pytools: 安装python工具
 EOF
 }
 

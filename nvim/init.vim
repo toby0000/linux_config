@@ -57,7 +57,6 @@ set cindent
 "set cinoptions={0,1s,t0,n-2,p2s,(03s,=.5s,>1s,=1s,:1s
 "set cinkeys=0{,0},0),:,!^F,o,O,e
 set shiftwidth=4                " Use indents of 4 spaces
-"set expandtab                   " Tabs are spaces, not tabs
 set tabstop=4                   " An indentation every four columns
 set softtabstop=4               " Let backspace delete indent
 set showcmd                     " show the cmd you input
@@ -121,7 +120,7 @@ tnoremap <c-q> <c-\><c-n>
 let $CONF = "~/.config/nvim/init.vim"
 
 nnoremap <leader>C :!rm ~/.local/share/nvim/swap/* -rf<cr>
-nnoremap <leader>T :vs term://bash<cr>a
+nnoremap <leader>T :vs term://zsh<cr>a
 
 nnoremap <leader><leader>/ :nohlsearch<CR>
 
@@ -208,7 +207,8 @@ let g:SuperTabContextDefaultCompletionType = "<c-n>"
 let g:deoplete#enable_at_startup=1
 
 " neomake
-let g:neomake_python_enable_makers = ['pylint', 'flake8']
+let g:neomake_python_enable_makers = ['pylint', 'flake8', 'pep8']
+let g:neomake_shell_enable_makers = ['shellcheck']
 autocmd! BufWritePost * Neomake
 
 " vim-better-whitespace
@@ -220,12 +220,15 @@ autocmd! BufWritePost *.py StripWhitespace
 let g:NERDDefaultAlign = 'left'
 
 " ack.vim
-let g:ackprg = 'ag --vimgrep --smart-case -w'
-nnoremap <leader>a :Ack!<cr>
+let g:ackprg = 'ag --vimgrep --smart-case'
+nnoremap <leader>a :Ack! -w <c-r><c-w><cr>
 
 " vim-easy-align
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+
+" gundo
+nnoremap <f5> :GundoToggle<CR>
 
 
 " not need to set follow config when use nvim
@@ -246,7 +249,8 @@ autocmd BufNewFile,BufRead *.py
             \ set textwidth=79 |
             \ set fileformat=unix |
             \ set foldmethod=indent |
-            \ nnoremap <space> za
+			\ set expandtab |  " Tabs are spaces, not tabs
+			\ set shiftround   " round indent to multiple of 'shiftwidth'"
 
 " highlight the char which over length of 80
 "highlight OverLength ctermbg=red ctermfg=white guibg=#592929
