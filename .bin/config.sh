@@ -28,8 +28,12 @@ alias fn='find -name'
 alias fd='find -type d -name'
 alias ff='find -type f -name'
 alias fgrep='find -name "*.[c|h]" -o -name "*.cpp" -o -name "*.java" | xargs grep --color -Hn'
-alias vi='nvim'
-alias vim='nvim'
+
+# nvim config
+if which nvim > /dev/null 2>&1; then
+	alias vi='nvim'
+	alias vim='nvim'
+fi
 
 # python config
 alias ls='ls --hide="*.pyc" --color'
@@ -51,7 +55,7 @@ CONFIG_LOCAL=local_config.sh
 [[ -f $MY_BIN_PATH/$CONFIG_LOCAL ]] && source $CONFIG_LOCAL
 
 # thefuck config (need exec after py2 or py3 )
-if [[ $(which thefuck > /dev/null 2>&1) ]]; then
+if which thefuck > /dev/null 2>&1; then
 	eval $(thefuck --alias)
 	alias f='fuck'
 fi
