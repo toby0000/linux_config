@@ -51,5 +51,7 @@ CONFIG_LOCAL=local_config.sh
 [[ -f $MY_BIN_PATH/$CONFIG_LOCAL ]] && source $CONFIG_LOCAL
 
 # thefuck config (need exec after py2 or py3 )
-eval $(thefuck --alias)
-alias f='fuck'
+if [[ $(which thefuck > /dev/null 2>&1) ]]; then
+	eval $(thefuck --alias)
+	alias f='fuck'
+fi
