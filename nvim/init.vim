@@ -89,6 +89,8 @@ nnoremap <leader>q :q<cr>
 nnoremap <leader>w :w<cr>
 nnoremap <leader>e :qa<cr>
 nnoremap <leader>x :x<cr>
+" close <c-q> fun, avoid launch vitual mode
+nnoremap <c-q> <esc>
 
 vnoremap <leader>" di""<esc>P
 vnoremap <leader>' di''<esc>P
@@ -194,7 +196,6 @@ map F <leader><leader>b
 
 " jedi-vim
 let g:jedi#completions_enabled = 0
-let g:jedi#force_py_version=2
 let g:jedi#popup_select_first = 0
 let g:jedi#completions_command = "<c-l>"
 let g:jedi#popup_on_dot = 0

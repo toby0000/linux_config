@@ -44,9 +44,10 @@ ins_python()
 
 ins_zsh()
 {
+	# 注意：在init函数中， 该函数必须在最后执行，由于执行完终端会切换到zsh，从而终端脚本
 	sudo apt-get install -y zsh
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 	make -C $LINUX_CONFIG_PATH install-zsh
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 }
 
 ins_fzf()
@@ -61,8 +62,15 @@ ins_fzf()
 
 ins_other()
 {
+	# common
+	sudo apt-get install -y vim openssh-client openssh-server
 	# zsh plugin
 	sudo apt-get install -y autojump silversearcher-ag
+}
+
+ins_zsh_plug()
+{
+	# 该函数必须在zsh安装完后安装，由于该函数会生成.oh-my-zsh目录，导致ins_zsh无法正常安装
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 }
 
@@ -96,14 +104,15 @@ ins_pytools()
 help()
 {
 	cat << EOF
-Usage: ./install [OPT]
+Usage:            ./install [OPT]
 OPT:
-	ins_python : 安装python以及虚拟环境
-	ins_nvim   : 安装nvim以及相关插件
-	ins_zsh    : 安装zsh
-	ins_fzf    : 安装fzf
-	init       : 执行ins_python, ins_nvim, ins_zsh, ins_fzf, ins_other, make
-	ins_pytools: 安装python工具
+	ins_python:   安装python以及虚拟环境
+	ins_nvim:     安装nvim以及相关插件
+	ins_zsh:      安装zsh
+	ins_fzf:      安装fzf
+	init:         执行ins_python, ins_nvim, ins_zsh, ins_fzf, ins_other, make
+	ins_zsh_plug: 安装zsh的脚本，必须在安装zsh后执行，否则会阻碍oh-my-zsh的安装
+	ins_pytools:  安装python工具，在安装python虚拟环境后安装
 EOF
 }
 
