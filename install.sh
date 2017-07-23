@@ -65,7 +65,7 @@ ins_other()
 	# common
 	sudo apt-get install -y vim openssh-client openssh-server
 	# zsh plugin
-	sudo apt-get install -y autojump silversearcher-ag
+	sudo apt-get install -y autojump silversearcher-ag lrzsz
 }
 
 ins_zsh_plug()
