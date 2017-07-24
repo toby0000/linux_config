@@ -59,3 +59,6 @@ if which thefuck > /dev/null 2>&1; then
 	eval $(thefuck --alias)
 	alias f='fuck'
 fi
+
+# fix pip can't install package because of pip.plugin.zsh
+unalias pip > /dev/null 2>&1
