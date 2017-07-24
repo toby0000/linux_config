@@ -63,9 +63,11 @@ ins_fzf()
 ins_other()
 {
 	# common
-	sudo apt-get install -y vim openssh-client openssh-server
+	sudo apt-get install -y vim openssh-client openssh-server lrzsz
 	# zsh plugin
-	sudo apt-get install -y autojump silversearcher-ag lrzsz
+	sudo apt-get install -y autojump silversearcher-ag
+	# nvim
+	sudo apt-get install -y exuberant-ctags
 }
 
 ins_zsh_plug()
