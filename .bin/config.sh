@@ -50,8 +50,8 @@ gpip() {
 # nvim
 VIMRUNTIME="$(nvim -e --cmd 'echo $VIMRUNTIME|quit' 2>&1)"
 
-# local_config
-CONFIG_LOCAL=local_config.sh
+# config local
+CONFIG_LOCAL=config_local.sh
 [[ -f $MY_BIN_PATH/$CONFIG_LOCAL ]] && source $CONFIG_LOCAL
 
 # thefuck config (need exec after py2 or py3 )
