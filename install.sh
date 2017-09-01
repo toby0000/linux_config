@@ -28,6 +28,8 @@ ins_nvim()
 	# install nvim config && plugin
 	make -C $LINUX_CONFIG_PATH install-nvim
 	nvim -c 'PlugInstall'
+	# install nvim plug config
+	ins_nvim_plug_conf
 }
 
 ins_python()
@@ -103,18 +105,31 @@ ins_pytools()
 	fi
 }
 
+# 安装nvim插件配置
+ins_nvim_plug_conf()
+{
+	py_snip=$LINUX_CONFIG_PATH/nvim/plugged/vim-snippets/UltiSnips/python.snippets
+	py_snip_bak=$LINUX_CONFIG_PATH/nvim/plugged/vim-snippets/UltiSnips/python.snippets.bak
+	diy_py_snip=$LINUX_CONFIG_PATH/nvim/python.snippets
+	if [[ -z $(grep "# DIY" $py_snip) ]]; then
+		cp $py_snip $py_snip_bak
+		cat $diy_py_snip >> $py_snip
+	fi
+}
+
 help()
 {
 	cat << EOF
 Usage:            ./install [OPT]
 OPT:
-	ins_python:   安装python以及虚拟环境
-	ins_nvim:     安装nvim以及相关插件
-	ins_zsh:      安装zsh
-	ins_fzf:      安装fzf
-	init:         执行ins_python, ins_nvim, ins_zsh, ins_fzf, ins_other, make
-	ins_zsh_plug: 安装zsh的脚本，必须在安装zsh后执行，否则会阻碍oh-my-zsh的安装
-	ins_pytools:  安装python工具，在安装python虚拟环境后安装
+	ins_python:         安装python以及虚拟环境
+	ins_nvim:           安装nvim以及相关插件
+	ins_zsh:            安装zsh
+	ins_fzf:            安装fzf
+	init:               执行ins_python, ins_nvim, ins_zsh, ins_fzf, ins_other, make
+	ins_zsh_plug:       安装zsh的脚本，必须在安装zsh后执行，否则会阻碍oh-my-zsh的安装
+	ins_pytools:        安装python工具，在安装python虚拟环境后安装
+	ins_nvim_plug_conf: 安装nvim插件配置
 EOF
 }
 

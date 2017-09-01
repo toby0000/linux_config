@@ -237,6 +237,9 @@ nmap ga <Plug>(EasyAlign)
 " gundo
 nnoremap <f5> :GundoToggle<CR>
 
+" vim-snippet
+let g:ultisnips_python_style = 'sphinx'
+
 " markdown
 " don't auto open chrome for preview
 let g:instant_markdown_autostart = 0
