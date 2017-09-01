@@ -39,6 +39,7 @@ fi
 alias ls='ls --hide="*.pyc" --color'
 alias py2='source ~/.env/py2/bin/activate'
 alias py3='source ~/.env/py3/bin/activate'
+alias act='source venv/bin/activate'
 # pip必须在virtualenv环境下执行
 export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
 export PIP_REQUIRE_VIRTUALENV=true
