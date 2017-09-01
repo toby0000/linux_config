@@ -23,6 +23,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'sjl/gundo.vim'
+Plug 'plasticboy/vim-markdown'
+Plug 'suan/vim-instant-markdown'
 Plug plug_path.'Solarized'
 Plug plug_path.'mark.vim'
 call plug#end()
@@ -208,8 +210,12 @@ let g:SuperTabContextDefaultCompletionType = "<c-n>"
 let g:deoplete#enable_at_startup=1
 
 " neomake
-let g:neomake_python_enable_makers = ['pylint', 'flake8', 'pep8']
+"let g:neomake_python_enable_makers = ['pylint', 'flake8', 'pep8']
+let g:neomake_python_enable_makers = ['flake8', 'pep8']
 let g:neomake_shell_enable_makers = ['shellcheck']
+"let g:neomake_verbose=2
+"let g:neomake_echo_current_error=1
+"let g:neomake_open_list=1
 autocmd! BufWritePost * Neomake
 
 " vim-better-whitespace
@@ -230,6 +236,11 @@ nmap ga <Plug>(EasyAlign)
 
 " gundo
 nnoremap <f5> :GundoToggle<CR>
+
+" markdown
+" don't auto open chrome for preview
+let g:instant_markdown_autostart = 0
+map <F8> :InstantMarkdownPreview<cr>
 
 
 " not need to set follow config when use nvim
