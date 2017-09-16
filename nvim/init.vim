@@ -10,7 +10,7 @@ Plug 'SirVer/ultisnips'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tomasr/molokai'
 Plug 'Yggdroot/indentLine'
-Plug 'easymotion/vim-easymotion'
+"Plug 'easymotion/vim-easymotion'
 Plug 'Shougo/deoplete.nvim'
 Plug 'zchee/deoplete-jedi'
 Plug 'ervandew/supertab'
@@ -25,6 +25,7 @@ Plug 'tpope/vim-repeat'
 Plug 'sjl/gundo.vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'suan/vim-instant-markdown'
+Plug 'vim-scripts/nginx.vim'
 Plug plug_path.'Solarized'
 Plug plug_path.'mark.vim'
 call plug#end()
@@ -266,6 +267,13 @@ autocmd BufNewFile,BufRead *.py
             \ set foldmethod=indent |
 			\ set expandtab |  " Tabs are spaces, not tabs
 			\ set shiftround   " round indent to multiple of 'shiftwidth'"
+
+" nginx.conf 语法高亮, 必须在×.conf语法高亮之前配置
+au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/* setfiletype nginx
+
+" 语法高亮 .conf 文件
+autocmd BufRead,BufNewFile *.conf setf dosini
+
 
 " highlight the char which over length of 80
 "highlight OverLength ctermbg=red ctermfg=white guibg=#592929
