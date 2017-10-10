@@ -93,11 +93,11 @@ init()
 # 安装用于nvim的python插件
 ins_pytools()
 {
-	# nvim
+	# for nvim
 	pip install -U pip neovim jedi flake8 pep8 pylint
 
 	# tools
-	pip install thefuck pipreqs mycli alembic
+	pip install thefuck pipreqs mycli alembic, ipdb
 	if [[ -n $(python -V 2>&1 | grep -P '2\.7\.') ]]; then
 		pip install ipython==5.4.1
 	else

@@ -10,7 +10,7 @@ Plug 'SirVer/ultisnips'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tomasr/molokai'
 Plug 'Yggdroot/indentLine'
-"Plug 'easymotion/vim-easymotion'
+Plug 'easymotion/vim-easymotion'
 Plug 'Shougo/deoplete.nvim'
 Plug 'zchee/deoplete-jedi'
 Plug 'ervandew/supertab'
@@ -43,11 +43,14 @@ set backspace=indent,eol,start  " Backspace for dummies
 set linespace=0                 " No extra spaces between rows
 set number                      " Line numbers on
 set showmatch                   " Show matching brackets/parenthesis
+
+" search
 set incsearch                   " Find as you type search
 set hlsearch                    " Highlight search terms
-set winminheight=0              " Windows can be 0 line high
 set ignorecase                  " Case insensitive search
 set smartcase                   " Case sensitive when uc present
+
+set winminheight=0              " Windows can be 0 line high
 set wildmenu                    " Show list instead of just completing
 set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
 set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
@@ -59,17 +62,33 @@ set smartindent
 set cindent
 "set cinoptions={0,1s,t0,n-2,p2s,(03s,=.5s,>1s,=1s,:1s
 "set cinkeys=0{,0},0),:,!^F,o,O,e
+set showcmd                     " show the cmd you input
+set ruler                       " show the current position
+
+" TAB
 set shiftwidth=4                " Use indents of 4 spaces
 set tabstop=4                   " An indentation every four columns
 set softtabstop=4               " Let backspace delete indent
-set showcmd                     " show the cmd you input
-set ruler                       " show the current position
+set shiftround
+set expandtab
 
 "set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 set laststatus=2
 set foldmethod=marker
 set foldlevel=99
 set updatetime=1000
+
+" don't automatically wrap text when typing
+set formatoptions-=t
+
+" don't automatically wrap on load
+set nowrap
+
+" disable stupid backup and swap files - they trigger too many events for file
+" system watchers
+set nobackup
+set nowritebackup
+set noswapfile
 
 let mapleader = ','
 nnoremap <c-p> :<c-p>
@@ -168,7 +187,7 @@ let g:ctrlp_by_filename = 1
 let g:ctrlp_working_path_mode = 'rw'
 let g:ctrlp_root_markers = ["tags", "cscope.out"]
 let g:ctrlp_clear_cache_on_exit = 0
-set wildignore=*.o,*.obj,*.d,*/.git/*,*.a,*.so
+set wildignore=*.o,*.obj,*.d,*/.git/*,*.a,*.so,*.pyc,*/__pycache__/*
 nnoremap <leader>b :CtrlPBuffer<cr>
 nnoremap <leader>u :CtrlPMRUFiles<cr>
 
@@ -277,8 +296,12 @@ autocmd BufRead,BufNewFile *.conf setf dosini
 
 " highlight the char which over length of 80
 "highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-highlight OverLength ctermbg=red
-match OverLength /\%81v.\+/
+" 1
+" highlight OverLength ctermbg=red
+" match OverLength /\%81v.\+/
+" 2
+" highlight ColorColumn ctermbg=188
+set colorcolumn=80
 
 " highlight the redundance space
 "highlight BadWhitespace ctermbg=red
