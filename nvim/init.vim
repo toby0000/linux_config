@@ -93,11 +93,14 @@ set noswapfile
 let mapleader = ','
 nnoremap <c-p> :<c-p>
 nnoremap <c-n> :<c-n>
+nnoremap <space> :
 
 nnoremap <c-h> <c-w><c-h>
 nnoremap <c-l> <c-w><c-l>
 nnoremap <c-j> <c-w><c-j>
 nnoremap <c-k> <c-w><c-k>
+nnoremap H ^
+nnoremap L $
 
 nnoremap <c-b> gt
 
@@ -111,6 +114,7 @@ nnoremap <leader>q :q<cr>
 nnoremap <leader>w :w<cr>
 nnoremap <leader>e :qa<cr>
 nnoremap <leader>x :x<cr>
+nnoremap <leader>z :q!<cr>
 " close <c-q> fun, avoid launch vitual mode
 nnoremap <c-q> <esc>
 
@@ -147,6 +151,43 @@ nnoremap <leader>C :!rm ~/.local/share/nvim/swap/* -rf<cr>
 nnoremap <leader>T :vs term://zsh<cr>a
 
 nnoremap <leader><leader>/ :nohlsearch<CR>
+
+" F2 行号开关，用于鼠标复制代码用
+" 为方便复制，用<F2>开启/关闭行号显示:
+function! HideNumber()
+    if(&relativenumber == &number)
+        set relativenumber! number!
+    elseif(&number)
+        set number!
+    else
+        set relativenumber!
+    endif
+    set number?
+endfunc
+nnoremap <F2> :call HideNumber()<CR>
+" F3 显示可打印字符开关
+nnoremap <F3> :set list! list?<CR>
+" F4 换行开关
+nnoremap <F4> :set wrap! wrap?<CR>
+"    when in insert mode, press <F5> to go to
+"    paste mode, where you can paste mass data
+"    that won't be autoindented
+set pastetoggle=<F5>
+" disbale paste mode when leaving insert mode
+au InsertLeave * set nopaste
+" F5 set paste问题已解决, 粘贴代码前不需要按F5了
+" F5 粘贴模式paste_mode开关,用于有格式的代码粘贴
+" Automatically set paste mode in Vim when pasting in insert mode
+function! XTermPasteBegin()
+    set pastetoggle=<Esc>[201~
+    set paste
+    return ""
+endfunction
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+
+" F6 语法开关，关闭语法可以加快大文件的展示
+nnoremap <F6> :exec exists('syntax_on') ? 'syn off' : 'syn on'<CR>
+
 
 " mark.vim
 nnoremap <leader>c :MarkClear<cr>
@@ -255,7 +296,7 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 " gundo
-nnoremap <f5> :GundoToggle<CR>
+nnoremap <f7> :GundoToggle<CR>
 
 " vim-snippet
 let g:ultisnips_python_style = 'sphinx'
