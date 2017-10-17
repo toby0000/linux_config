@@ -42,6 +42,7 @@ set showmode                    " Display the current mode
 set backspace=indent,eol,start  " Backspace for dummies
 set linespace=0                 " No extra spaces between rows
 set number                      " Line numbers on
+set relativenumber              " 相对行号: 行号变成相对，可以用 nj/nk 进行跳转
 set showmatch                   " Show matching brackets/parenthesis
 
 " search
@@ -91,6 +92,10 @@ set nowritebackup
 set noswapfile
 
 let mapleader = ','
+
+" 复制选中区到系统剪切板中
+noremap <leader>y "+y
+
 nnoremap <c-p> :<c-p>
 nnoremap <c-n> :<c-n>
 nnoremap <space> :
@@ -101,6 +106,10 @@ nnoremap <c-j> <c-w><c-j>
 nnoremap <c-k> <c-w><c-k>
 nnoremap H ^
 nnoremap L $
+" 选中并高亮最后一次插入的内容
+nnoremap gv `[v`]
+" select block
+nnoremap <leader>v V`}
 
 nnoremap <c-b> gt
 
@@ -117,6 +126,8 @@ nnoremap <leader>x :x<cr>
 nnoremap <leader>z :q!<cr>
 " close <c-q> fun, avoid launch vitual mode
 nnoremap <c-q> <esc>
+" to sudo & write a file
+nnoremap <leader>W :w !sudo tee >/dev/null %<cr>
 
 vnoremap <leader>" di""<esc>P
 vnoremap <leader>' di''<esc>P
@@ -126,6 +137,9 @@ vnoremap <leader>[ di[]<esc>P
 vnoremap <leader>{ di{}<esc>P
 vnoremap * y/0<cr>
 vnoremap # y?0<cr>
+" 调整缩进后自动选中，方便再次操作
+vnoremap < <gv
+vnoremap > >gv
 
 "insert mode keymap
 inoremap <c-b> <left>
@@ -134,6 +148,25 @@ inoremap <c-a> <home>
 inoremap <c-e> <end>
 inoremap <c-d> <del>
 inoremap <c-j> <esc>o
+
+" TAB
+map <leader>tj :tabnext<cr>
+map <leader>tk :tabprev<cr>
+map <leader>te :tabedit<cr>
+map <leader>td :tabclose<cr>
+map <leader>tm :tabm<cr>
+
+" normal模式下切换到确切的tab
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>7 7gt
+noremap <leader>8 8gt
+noremap <leader>9 9gt
+noremap <leader>0 :tablast<cr>
 
 "ex mode keymap
 cnoremap <c-d> <del>
@@ -152,6 +185,11 @@ nnoremap <leader>T :vs term://zsh<cr>a
 
 nnoremap <leader><leader>/ :nohlsearch<CR>
 
+" 插入模式下用绝对行号, 普通模式下用相对
+au FocusLost * :set norelativenumber number
+au FocusGained * :set relativenumber
+autocmd InsertEnter * :set norelativenumber number
+autocmd InsertLeave * :set relativenumber
 " F2 行号开关，用于鼠标复制代码用
 " 为方便复制，用<F2>开启/关闭行号显示:
 function! HideNumber()
@@ -306,12 +344,14 @@ let g:ultisnips_python_style = 'sphinx'
 let g:instant_markdown_autostart = 0
 map <F8> :InstantMarkdownPreview<cr>
 
-
-" not need to set follow config when use nvim
-"set encoding=utf-8
-"set termencoding=cp936
-"set fileencodings=ucs-bom,utf-8,cp936,gdk
-"let &termencoding=&encoding
+" 设置新文件的编码为 UTF-8
+set encoding=utf-8
+" 自动判断编码时，依次尝试以下编码：
+set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+set helplang=cn
+set langmenu=zh_CN.UTF-8
+" 下面这句只影响普通模式 (非图形界面) 下的 Vim
+set termencoding=&encoding
 
 " set python config
 "autocmd BufNewFile,BufRead *.py exec ":call SetPythonConfig()"
@@ -356,5 +396,7 @@ au BufNewFile,BufRead *.js,*.html,*.css
 
 nnoremap <f10> :!python %<cr>
 nnoremap <f9> :!python3 %<cr>
+" vimrc文件修改之后自动加载, linux
+autocmd! bufwritepost .vimrc source %
 source ~/.config/nvim/google_python_style.vim
 "autocmd FileType python set makeprg=pylint\ --reports=n\ --msg-template=\"{path}:{line}:\ {msg_id}\ {symbol},\ {obj}\ {msg}\"\ %:p autocmd FileType python set errorformat=%f:%l:\ %m
