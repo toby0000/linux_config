@@ -113,7 +113,8 @@ ins_nvim_plug_conf()
 	diy_py_snip=$LINUX_CONFIG_PATH/nvim/python.snippets
 	if [[ -z $(grep "# DIY" $py_snip) ]]; then
 		cp $py_snip $py_snip_bak
-		cat $diy_py_snip >> $py_snip
+        ln -s $diy_py_snip $py_snip
+		#cat $diy_py_snip >> $py_snip
 	fi
 }
 
