@@ -8,8 +8,6 @@ Plug 'kien/ctrlp.vim'
 Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
 Plug 'jiangmiao/auto-pairs'
-Plug 'tomasr/molokai'
-Plug 'Yggdroot/indentLine'
 Plug 'easymotion/vim-easymotion'
 Plug 'Shougo/deoplete.nvim'
 Plug 'zchee/deoplete-jedi'
@@ -17,14 +15,19 @@ Plug 'ervandew/supertab'
 Plug 'neomake/neomake'
 Plug 'scrooloose/nerdcommenter'
 Plug 'mileszs/ack.vim'
-Plug 'ntpeters/vim-better-whitespace'
 Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'sjl/gundo.vim'
+" view
+Plug 'tomasr/molokai'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'Yggdroot/indentLine'
+" markdown
 Plug 'plasticboy/vim-markdown'
 Plug 'suan/vim-instant-markdown'
+" other
 Plug 'vim-scripts/nginx.vim'
 Plug plug_path.'Solarized'
 Plug plug_path.'mark.vim'
@@ -106,12 +109,6 @@ nnoremap <c-j> <c-w><c-j>
 nnoremap <c-k> <c-w><c-k>
 nnoremap H ^
 nnoremap L $
-" 选中并高亮最后一次插入的内容
-nnoremap gv `[v`]
-" select block
-nnoremap <leader>v V`}
-
-nnoremap <c-b> gt
 
 nnoremap <leader>" ciw""<esc>P
 nnoremap <leader>' ciw''<esc>P
@@ -150,8 +147,8 @@ inoremap <c-d> <del>
 inoremap <c-j> <esc>o
 
 " TAB
-map <leader>tj :tabnext<cr>
-map <leader>tk :tabprev<cr>
+map <silent><c-b> :tabnext<cr>
+map <silent><c-f> :tabprev<cr>
 map <leader>te :tabedit<cr>
 map <leader>td :tabclose<cr>
 map <leader>tm :tabm<cr>
@@ -183,7 +180,9 @@ let $CONF = "~/.config/nvim/init.vim"
 nnoremap <leader>C :!rm ~/.local/share/nvim/swap/* -rf<cr>
 nnoremap <leader>T :vs term://zsh<cr>a
 
-nnoremap <leader><leader>/ :nohlsearch<CR>
+nnoremap <esc><esc> :nohlsearch<CR>
+" event
+autocmd BufWritePost *.md :%s/\t/    /g
 
 " 插入模式下用绝对行号, 普通模式下用相对
 au FocusLost * :set norelativenumber number
@@ -262,7 +261,7 @@ nmap <leader>k :tp<cr>
 
 " ctrlp
 let g:ctrlp_map = '<leader>p'
-let g:ctrlp_by_filename = 1
+"let g:ctrlp_by_filename = 1
 let g:ctrlp_working_path_mode = 'rw'
 let g:ctrlp_root_markers = ["tags", "cscope.out"]
 let g:ctrlp_clear_cache_on_exit = 0
@@ -367,6 +366,8 @@ autocmd BufNewFile,BufRead *.py
             \ set foldmethod=indent |
 			\ set expandtab |  " Tabs are spaces, not tabs
 			\ set shiftround   " round indent to multiple of 'shiftwidth'"
+
+autocmd BufNewFile *.py call append(0, "\# -*- coding: utf-8 -*-")
 
 " nginx.conf 语法高亮, 必须在×.conf语法高亮之前配置
 au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/* setfiletype nginx
