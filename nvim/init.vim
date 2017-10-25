@@ -1,7 +1,6 @@
 " vim-plug
 let plug_path='~/.config/nvim/plugged/'
 call plug#begin(plug_path)
-Plug 'davidhalter/jedi-vim'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'  }
 Plug 'kien/ctrlp.vim'
@@ -10,7 +9,6 @@ Plug 'SirVer/ultisnips'
 Plug 'jiangmiao/auto-pairs'
 Plug 'easymotion/vim-easymotion'
 Plug 'Shougo/deoplete.nvim'
-Plug 'zchee/deoplete-jedi'
 Plug 'ervandew/supertab'
 Plug 'neomake/neomake'
 Plug 'scrooloose/nerdcommenter'
@@ -20,10 +18,16 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'sjl/gundo.vim'
+" js
+Plug 'pangloss/vim-javascript'
+" python
+Plug 'davidhalter/jedi-vim'
+Plug 'zchee/deoplete-jedi'
 " view
 Plug 'tomasr/molokai'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'Yggdroot/indentLine'
+Plug 'kien/rainbow_parentheses.vim'
 " markdown
 Plug 'plasticboy/vim-markdown'
 Plug 'suan/vim-instant-markdown'
@@ -33,6 +37,9 @@ Plug plug_path.'Solarized'
 Plug plug_path.'mark.vim'
 call plug#end()
 
+
+" ------------------------------- common setting ------------------------
+"
 scriptencoding utf-8
 syntax on
 syntax enable
@@ -93,6 +100,16 @@ set nowrap
 set nobackup
 set nowritebackup
 set noswapfile
+
+" 设置新文件的编码为 UTF-8
+set encoding=utf-8
+" 自动判断编码时，依次尝试以下编码：
+set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+set helplang=cn
+set langmenu=zh_CN.UTF-8
+" 下面这句只影响普通模式 (非图形界面) 下的 Vim
+set termencoding=&encoding
+
 
 let mapleader = ','
 
@@ -181,7 +198,24 @@ nnoremap <leader>C :!rm ~/.local/share/nvim/swap/* -rf<cr>
 nnoremap <leader>T :vs term://zsh<cr>a
 
 nnoremap <esc><esc> :nohlsearch<CR>
-" event
+
+
+" highlight the char which over length of 80
+"highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+" 1
+" highlight OverLength ctermbg=red
+" match OverLength /\%81v.\+/
+" 2
+" highlight ColorColumn ctermbg=188
+set colorcolumn=80
+
+" highlight the redundance space
+"highlight BadWhitespace ctermbg=red
+"match BadWhitespace /\s\+$/
+
+
+" ---------------------- event -------------------------------
+"
 autocmd BufWritePost *.md :%s/\t/    /g
 
 " 插入模式下用绝对行号, 普通模式下用相对
@@ -189,6 +223,41 @@ au FocusLost * :set norelativenumber number
 au FocusGained * :set relativenumber
 autocmd InsertEnter * :set norelativenumber number
 autocmd InsertLeave * :set relativenumber
+
+autocmd! bufwritepost .init.vim source %
+
+
+" set python config
+"autocmd BufNewFile,BufRead *.py exec ":call SetPythonConfig()"
+"func SetPythonConfig()
+"    set textwidth=79
+"    set fileformat=unix
+"    set foldmethod=indent
+"    nnoremap <space> za
+"endfunc
+autocmd BufNewFile,BufRead *.py
+            \ set textwidth=79 |
+            \ set fileformat=unix |
+            \ set foldmethod=indent |
+			\ set expandtab |  " Tabs are spaces, not tabs
+			\ set shiftround   " round indent to multiple of 'shiftwidth'"
+
+autocmd BufNewFile *.py call append(0, "\# -*- coding: utf-8 -*-")
+
+" set web config
+au BufNewFile,BufRead *.js,*.html,*.css
+            \ set tabstop=2 |
+            \ set softtabstop=2 |
+            \ set shiftwidth=2
+" nginx.conf 语法高亮, 必须在×.conf语法高亮之前配置
+au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/* setfiletype nginx
+
+" 语法高亮 .conf 文件
+autocmd BufRead,BufNewFile *.conf setf dosini
+
+"autocmd FileType python set makeprg=pylint\ --reports=n\ --msg-template=\"{path}:{line}:\ {msg_id}\ {symbol},\ {obj}\ {msg}\"\ %:p autocmd FileType python set errorformat=%f:%l:\ %m
+
+" ------------------------- other setting --------------------
 " F2 行号开关，用于鼠标复制代码用
 " 为方便复制，用<F2>开启/关闭行号显示:
 function! HideNumber()
@@ -226,6 +295,8 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 nnoremap <F6> :exec exists('syntax_on') ? 'syn off' : 'syn on'<CR>
 
 
+" ------------------------- plugin setting ----------------------
+"
 " mark.vim
 nnoremap <leader>c :MarkClear<cr>
 
@@ -343,61 +414,8 @@ let g:ultisnips_python_style = 'sphinx'
 let g:instant_markdown_autostart = 0
 map <F8> :InstantMarkdownPreview<cr>
 
-" 设置新文件的编码为 UTF-8
-set encoding=utf-8
-" 自动判断编码时，依次尝试以下编码：
-set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
-set helplang=cn
-set langmenu=zh_CN.UTF-8
-" 下面这句只影响普通模式 (非图形界面) 下的 Vim
-set termencoding=&encoding
-
-" set python config
-"autocmd BufNewFile,BufRead *.py exec ":call SetPythonConfig()"
-"func SetPythonConfig()
-"    set textwidth=79
-"    set fileformat=unix
-"    set foldmethod=indent
-"    nnoremap <space> za
-"endfunc
-autocmd BufNewFile,BufRead *.py
-            \ set textwidth=79 |
-            \ set fileformat=unix |
-            \ set foldmethod=indent |
-			\ set expandtab |  " Tabs are spaces, not tabs
-			\ set shiftround   " round indent to multiple of 'shiftwidth'"
-
-autocmd BufNewFile *.py call append(0, "\# -*- coding: utf-8 -*-")
-
-" nginx.conf 语法高亮, 必须在×.conf语法高亮之前配置
-au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/* setfiletype nginx
-
-" 语法高亮 .conf 文件
-autocmd BufRead,BufNewFile *.conf setf dosini
-
-
-" highlight the char which over length of 80
-"highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-" 1
-" highlight OverLength ctermbg=red
-" match OverLength /\%81v.\+/
-" 2
-" highlight ColorColumn ctermbg=188
-set colorcolumn=80
-
-" highlight the redundance space
-"highlight BadWhitespace ctermbg=red
-"match BadWhitespace /\s\+$/
-
-" set web config
-au BufNewFile,BufRead *.js,*.html,*.css
-            \ set tabstop=2 |
-            \ set softtabstop=2 |
-            \ set shiftwidth=2
 
 nnoremap <f10> :!python %<cr>
 nnoremap <f9> :!python3 %<cr>
 " vimrc文件修改之后自动加载, linux
-autocmd! bufwritepost .vimrc source %
 source ~/.config/nvim/google_python_style.vim
-"autocmd FileType python set makeprg=pylint\ --reports=n\ --msg-template=\"{path}:{line}:\ {msg_id}\ {symbol},\ {obj}\ {msg}\"\ %:p autocmd FileType python set errorformat=%f:%l:\ %m
