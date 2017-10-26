@@ -133,15 +133,16 @@ nnoremap <leader>< ciw<><esc>P
 nnoremap <leader>( ciw()<esc>P
 nnoremap <leader>[ ciw[]<esc>P
 nnoremap <leader>{ ciw{}<esc>P
-nnoremap <leader>q :q<cr>
-nnoremap <leader>w :w<cr>
-nnoremap <leader>e :qa<cr>
-nnoremap <leader>x :x<cr>
-nnoremap <leader>z :q!<cr>
+nnoremap <silent><leader>q :q<cr>
+nnoremap <silent><leader>w :w<cr>
+nnoremap <silent><leader>e :qa<cr>
+nnoremap <silent><leader>x :x<cr>
+nnoremap <silent><leader>z :q!<cr>
 " close <c-q> fun, avoid launch vitual mode
 nnoremap <c-q> <esc>
 " to sudo & write a file
-nnoremap <leader>W :w !sudo tee >/dev/null %<cr>
+nnoremap <leader>W :execute 'w !sudo tee >/dev/null %' \| :e!<cr>
+nnoremap <leader>X :execute 'w !sudo tee >/dev/null %' \| :q!<cr>
 
 vnoremap <leader>" di""<esc>P
 vnoremap <leader>' di''<esc>P
@@ -224,6 +225,7 @@ au FocusGained * :set relativenumber
 autocmd InsertEnter * :set norelativenumber number
 autocmd InsertLeave * :set relativenumber
 
+" vimrc文件修改之后自动加载, linux
 autocmd! bufwritepost .init.vim source %
 
 
@@ -294,6 +296,8 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 " F6 语法开关，关闭语法可以加快大文件的展示
 nnoremap <F6> :exec exists('syntax_on') ? 'syn off' : 'syn on'<CR>
 
+nnoremap <f10> :!python %<cr>
+nnoremap <f9> :!python3 %<cr>
 
 " ------------------------- plugin setting ----------------------
 "
@@ -414,8 +418,11 @@ let g:ultisnips_python_style = 'sphinx'
 let g:instant_markdown_autostart = 0
 map <F8> :InstantMarkdownPreview<cr>
 
+" rainbow_parentheses
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 
-nnoremap <f10> :!python %<cr>
-nnoremap <f9> :!python3 %<cr>
-" vimrc文件修改之后自动加载, linux
+" -------------------- other vim config ----------
 source ~/.config/nvim/google_python_style.vim
