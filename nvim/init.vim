@@ -155,6 +155,7 @@ vnoremap # y?0<cr>
 " 调整缩进后自动选中，方便再次操作
 vnoremap < <gv
 vnoremap > >gv
+vnoremap <space> 0<c-v>I <esc>gvV
 
 "insert mode keymap
 inoremap <c-b> <left>
