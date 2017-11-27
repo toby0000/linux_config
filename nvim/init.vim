@@ -218,7 +218,7 @@ set colorcolumn=80
 
 " ---------------------- event -------------------------------
 "
-autocmd BufWritePost *.md :%s/\t/    /g
+autocmd BufWritePost *.md :silent!%s/\t/    /g
 
 " 插入模式下用绝对行号, 普通模式下用相对
 au FocusLost * :set norelativenumber number
@@ -242,8 +242,8 @@ autocmd BufNewFile,BufRead *.py
             \ set textwidth=79 |
             \ set fileformat=unix |
             \ set foldmethod=indent |
-			\ set expandtab |  " Tabs are spaces, not tabs
-			\ set shiftround   " round indent to multiple of 'shiftwidth'"
+            \ set expandtab |  " Tabs are spaces, not tabs
+            \ set shiftround   " round indent to multiple of 'shiftwidth'"
 
 autocmd BufNewFile *.py call append(0, "\# -*- coding: utf-8 -*-")
 
