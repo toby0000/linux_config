@@ -4,7 +4,7 @@ snippet logger "getLogger"
 logger = logging.getLogger(__name__)
 endsnippet
 
-snippet logcnf "basicConfig"
+snippet logcfg "basicConfig"
 logging.basicConfig(level=logging.${0:${VISUAL:INFO}},
 					format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s')
 endsnippet

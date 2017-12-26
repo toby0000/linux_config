@@ -2,7 +2,7 @@
 let plug_path='~/.config/nvim/plugged/'
 call plug#begin(plug_path)
 Plug 'majutsushi/tagbar'
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'  }
+Plug 'scrooloose/nerdtree',
 Plug 'kien/ctrlp.vim'
 Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
@@ -118,7 +118,7 @@ noremap <leader>y "+y
 
 nnoremap <c-p> :<c-p>
 nnoremap <c-n> :<c-n>
-nnoremap <space> :
+nnoremap <space> za
 
 nnoremap <c-h> <c-w><c-h>
 nnoremap <c-l> <c-w><c-l>
@@ -248,10 +248,10 @@ autocmd BufNewFile,BufRead *.py
 autocmd BufNewFile *.py call append(0, "\# -*- coding: utf-8 -*-")
 
 " set web config
-au BufNewFile,BufRead *.js,*.html,*.css
-            \ set tabstop=2 |
-            \ set softtabstop=2 |
-            \ set shiftwidth=2
+"au BufNewFile,BufRead *.js,*.html,*.css
+"            \ set tabstop=2 |
+"            \ set softtabstop=2 |
+"            \ set shiftwidth=2
 " nginx.conf 语法高亮, 必须在×.conf语法高亮之前配置
 au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/* setfiletype nginx
 
