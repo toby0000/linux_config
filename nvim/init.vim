@@ -242,6 +242,7 @@ autocmd BufNewFile,BufRead *.py
             \ set textwidth=79 |
             \ set fileformat=unix |
             \ set foldmethod=indent |
+            \ set foldnestmax=2 |
             \ set expandtab |  " Tabs are spaces, not tabs
             \ set shiftround   " round indent to multiple of 'shiftwidth'"
 

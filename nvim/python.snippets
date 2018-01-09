@@ -6,6 +6,6 @@ endsnippet
 
 snippet logcfg "basicConfig"
 logging.basicConfig(level=logging.${0:${VISUAL:INFO}},
-					format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s')
+					format='%(asctime)s %(name)s:%(funcName)s-%(lineno)d:%(levelname)s:%(message)s')
 endsnippet
 
