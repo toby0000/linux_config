@@ -64,3 +64,14 @@ fi
 
 # fix pip can't install package because of pip.plugin.zsh
 unalias pip > /dev/null 2>&1
+
+setproxy() {
+    port=$1
+    if [[ -z $port ]]; then
+        echo please input the port
+        return
+    fi
+    export ALL_PROXY=socks5://127.0.0.1:$port
+}
+alias unsetproxy="unset ALL_PROXY"
+#alias ip="curl -i http://ip.cn"
