@@ -70,6 +70,9 @@ ins_other()
 	sudo apt-get install -y autojump silversearcher-ag
 	# nvim
 	sudo apt-get install -y exuberant-ctags
+    # 神器jq: 格式化json显示，替换python -m json.tool
+    # tig: 交互式的git
+    sudo apt-get install -y jq tig mycli
 }
 
 ins_zsh_plug()
@@ -97,7 +100,7 @@ ins_pytools()
 	pip install -U pip neovim jedi flake8 pep8 pylint
 
 	# tools
-	pip install thefuck pipreqs mycli alembic, ipdb
+	pip install thefuck pipreqs alembic, ipdb
 	if [[ -n $(python -V 2>&1 | grep -P '2\.7\.') ]]; then
 		pip install ipython==5.4.1
 	else
