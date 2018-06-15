@@ -34,13 +34,13 @@ ins_nvim()
 
 ins_python()
 {
-	sudo apt-get install -y python python-dev python-pip
+	#sudo apt-get install -y python python-dev python-pip
 	sudo apt-get install -y python3 python-dev python3-pip
 	make -C $LINUX_CONFIG_PATH install-pip
 	sudo pip install -U pip
 	sudo pip install virtualenv
 	mkdir -p ~/.env
-	virtualenv -p python ~/.env/py2
+	#virtualenv -p python ~/.env/py2
 	virtualenv -p python3 ~/.env/py3
 }
 
