@@ -10,17 +10,20 @@ LINUX_CONFIG_PATH=$(dirname $(readlink -f $0))
 
 ins_nvim()
 {
-	sudo apt-get install -y software-properties-common
-	sudo add-apt-repository ppa:neovim-ppa/stable
-	sudo apt-get update
+	# ubuntu 18以上的版本不需要自己添加仓库
+	#sudo apt-get install -y software-properties-common
+	#sudo add-apt-repository ppa:neovim-ppa/stable
+	#sudo apt-get update
 	sudo apt-get install -y neovim
 
-	sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
-	sudo update-alternatives --config vi
-	sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
-	sudo update-alternatives --config vim
-	sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
-	sudo update-alternatives --config editor
+	# TODO: 待测试
+	# ubuntu 18以上版本会自动设置nvim为默认编辑器
+	#sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
+	#sudo update-alternatives --config vi
+	#sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
+	#sudo update-alternatives --config vim
+	#sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
+	#sudo update-alternatives --config editor
 
 	# install plug.vim
 	sudo apt-get install -y curl
@@ -35,10 +38,10 @@ ins_nvim()
 ins_python()
 {
 	#sudo apt-get install -y python python-dev python-pip
-	sudo apt-get install -y python3 python-dev python3-pip
+	sudo apt-get install -y python3 python3-dev python3-pip
 	make -C $LINUX_CONFIG_PATH install-pip
-	sudo pip install -U pip
-	sudo pip install virtualenv
+	sudo pip3 install -U pip
+	sudo pip3 install virtualenv
 	mkdir -p ~/.env
 	#virtualenv -p python ~/.env/py2
 	virtualenv -p python3 ~/.env/py3
