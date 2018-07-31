@@ -9,3 +9,15 @@ logging.basicConfig(level=logging.${0:${VISUAL:INFO}},
 					format='%(asctime)s %(name)s:%(funcName)s-%(lineno)d:%(levelname)s:%(message)s')
 endsnippet
 
+snippet time "calculate time decorator"
+def time_deco(func):
+	def _deco(*args, **kw):
+		import time
+		stime = time.time()
+		ret = func(*args, **kw)
+		print(func.__name__, time.time()-stime)
+		return ret
+	return _deco
+@time_deco
+endsnippet
+
