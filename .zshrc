@@ -84,7 +84,10 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-#
+
+# 修复win10 zsh autojump autojump_chpwd:4: nice(5) failed: operation not permitted 的错误
+# https://segmentfault.com/a/1190000010847216
+unsetopt BG_NICE
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 source ~/.bin/config.sh

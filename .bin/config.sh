@@ -37,7 +37,7 @@ fi
 
 # python config
 alias ls='ls --hide="*.pyc" --color'
-alias py2='source ~/.env/py2/bin/activate'
+#alias py2='source ~/.env/py2/bin/activate'
 alias py3='source ~/.env/py3/bin/activate'
 alias venv='source venv/bin/activate'
 # pip必须在virtualenv环境下执行
@@ -53,8 +53,8 @@ gpip() {
 VIMRUNTIME="$(nvim -e --cmd 'echo $VIMRUNTIME|quit' 2>&1)"
 
 # config local
-CONFIG_LOCAL=config_local.sh
-[[ -f $MY_BIN_PATH/$CONFIG_LOCAL ]] && source $CONFIG_LOCAL
+LOCAL_CONFIG=local_config.sh
+[[ -f $MY_BIN_PATH/$LOCAL_CONFIG ]] && source $LOCAL_CONFIG
 
 # thefuck config (need exec after py2 or py3 )
 if which thefuck > /dev/null 2>&1; then
@@ -74,4 +74,4 @@ setproxy() {
     export ALL_PROXY=socks5://127.0.0.1:$port
 }
 alias unsetproxy="unset ALL_PROXY"
-#alias ip="curl -i http://ip.cn"
+alias myip="curl -i http://ip.cn"
