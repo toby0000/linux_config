@@ -89,9 +89,9 @@ init()
 {
 	ins_python
 	ins_nvim
+	make -C $LINUX_CONFIG_PATH
 	ins_fzf
 	ins_other
-	make -C $LINUX_CONFIG_PATH
 	# zsh必须在最后安装，由于它会将终端切到zsh，从而中断脚本
 	ins_zsh
 }
@@ -125,19 +125,29 @@ ins_nvim_plug_conf()
     cat $diy_py_snip >> $py_snip
 }
 
+
+# 安装tmux
+ins_tmux()
+{
+    sudo apt-get install -y tmux
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+}
+
 help()
 {
 	cat << EOF
-Usage:            ./install [OPT]
+Usage: ./install.sh [OPT]
 OPT:
-	ins_python:         安装python以及虚拟环境
-	ins_nvim:           安装nvim以及相关插件
-	ins_zsh:            安装zsh
-	ins_fzf:            安装fzf
-	init:               执行ins_python, ins_nvim, ins_zsh, ins_fzf, ins_other, make
+	init:                        执行ins_python, ins_nvim, ins_zsh, ins_fzf, ins_other, make
+	|- ins_python:               安装python以及虚拟环境
+	|- ins_zsh:                  安装zsh
+	|- ins_tmux:                 安装tmux
+	|- ins_fzf:                  安装fzf
+	|- ins_nvim:                 安装nvim以及相关插件
+	   |- ins_nvim_plug_conf:    安装nvim插件配置
+
 	ins_zsh_plug:       安装zsh的脚本，必须在安装zsh后执行，否则会阻碍oh-my-zsh的安装
 	ins_pytools:        安装python工具，在安装python虚拟环境后安装
-	ins_nvim_plug_conf: 安装nvim插件配置
 EOF
 }
 

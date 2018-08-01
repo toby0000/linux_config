@@ -51,7 +51,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git autojump colored-man-pages zsh_reload pip sudo \
+plugins=(git autojump colored-man-pages zsh_reload pip sudo tmux \
 	extract django python celery supervisord zsh-syntax-highlighting, catimg)
 
 source $ZSH/oh-my-zsh.sh
