@@ -103,7 +103,8 @@ ins_pytools()
 	pip install -U pip neovim jedi flake8 pep8 pylint
 
 	# tools
-	pip install thefuck pipreqs mycli alembic ipdb
+	#pip install thefuck pipreqs mycli alembic ipdb
+	pip install pipreqs mycli ipdb
 	if [[ -n $(python -V 2>&1 | grep -P '2\.7\.') ]]; then
 		pip install ipython==5.4.1
 	else

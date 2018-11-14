@@ -8,7 +8,7 @@ Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
 Plug 'jiangmiao/auto-pairs'
 Plug 'easymotion/vim-easymotion'
-Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'ervandew/supertab'
 Plug 'neomake/neomake'
 Plug 'scrooloose/nerdcommenter'
@@ -20,6 +20,7 @@ Plug 'tpope/vim-repeat'
 Plug 'sjl/gundo.vim'
 " js
 Plug 'pangloss/vim-javascript'
+Plug 'posva/vim-vue'
 " python
 Plug 'davidhalter/jedi-vim'
 Plug 'zchee/deoplete-jedi'
@@ -134,10 +135,10 @@ nnoremap <leader>( ciw()<esc>P
 nnoremap <leader>[ ciw[]<esc>P
 nnoremap <leader>{ ciw{}<esc>P
 nnoremap <silent><leader>q :q<cr>
+nnoremap <silent><leader>Q :q!<cr>
 nnoremap <silent><leader>w :w<cr>
 nnoremap <silent><leader>e :qa<cr>
 nnoremap <silent><leader>x :x<cr>
-nnoremap <silent><leader>z :q!<cr>
 " close <c-q> fun, avoid launch vitual mode
 nnoremap <c-q> <esc>
 " to sudo & write a file
@@ -428,3 +429,21 @@ au Syntax * RainbowParenthesesLoadBraces
 
 " -------------------- other vim config ----------
 source ~/.config/nvim/google_python_style.vim
+
+function! Zoom ()
+    " check if is the zoomed state (tabnumber > 1 && window == 1)
+    if tabpagenr('$') > 1 && tabpagewinnr(tabpagenr(), '$') == 1
+        let l:cur_winview = winsaveview()
+        let l:cur_bufname = bufname('')
+        tabclose
+
+        " restore the view
+        if l:cur_bufname == bufname('')
+            call winrestview(cur_winview)
+        endif
+    else
+        tab split
+    endif
+endfunction
+
+nmap <leader>z :call Zoom()<CR>
