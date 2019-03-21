@@ -1,5 +1,7 @@
 nvim/plugged
-config_local.sh
+nvim/autoload
+nvim/ftplugin
+local_config.sh
 .bin/install.sh
 # zsh pip plugin install cache
 .pip/zsh-cache

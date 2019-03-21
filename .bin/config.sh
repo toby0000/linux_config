@@ -37,7 +37,6 @@ fi
 
 # python config
 alias ls='ls --hide="*.pyc" --color'
-#alias py2='source ~/.env/py2/bin/activate'
 alias py3='source ~/.env/py3/bin/activate'
 alias venv='source venv/bin/activate'
 # pip必须在virtualenv环境下执行
@@ -65,13 +64,4 @@ fi
 # fix pip can't install package because of pip.plugin.zsh
 unalias pip > /dev/null 2>&1
 
-setproxy() {
-    port=$1
-    if [[ -z $port ]]; then
-        echo please input the port
-        return
-    fi
-    export ALL_PROXY=socks5://127.0.0.1:$port
-}
-alias unsetproxy="unset ALL_PROXY"
 alias myip="curl -i http://ip.cn"
