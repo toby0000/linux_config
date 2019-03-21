@@ -2,7 +2,7 @@
 let plug_path='~/.config/nvim/plugged/'
 call plug#begin(plug_path)
 Plug 'majutsushi/tagbar'
-Plug 'scrooloose/nerdtree',
+Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'kien/ctrlp.vim'
 Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
@@ -18,6 +18,10 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'sjl/gundo.vim'
+" golang
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
+Plug 'stamblerre/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh'  }
+Plug 'deoplete-plugins/deoplete-go', { 'do': 'make' }
 " js
 Plug 'pangloss/vim-javascript'
 Plug 'posva/vim-vue'
@@ -283,7 +287,8 @@ nnoremap <F4> :set wrap! wrap?<CR>
 "    when in insert mode, press <F5> to go to
 "    paste mode, where you can paste mass data
 "    that won't be autoindented
-set pastetoggle=<F5>
+nnoremap <f5> :!python3 %<cr>
+set pastetoggle=<F6>
 " disbale paste mode when leaving insert mode
 au InsertLeave * set nopaste
 " F5 set paste问题已解决, 粘贴代码前不需要按F5了
@@ -296,11 +301,6 @@ function! XTermPasteBegin()
 endfunction
 inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
-" F6 语法开关，关闭语法可以加快大文件的展示
-nnoremap <F6> :exec exists('syntax_on') ? 'syn off' : 'syn on'<CR>
-
-nnoremap <f10> :!python %<cr>
-nnoremap <f9> :!python3 %<cr>
 
 " ------------------------- plugin setting ----------------------
 "
@@ -395,8 +395,8 @@ let g:neomake_shell_enable_makers = ['shellcheck']
 autocmd! BufWritePost * Neomake
 
 " vim-better-whitespace
-autocmd! BufEnter *.py EnableStripWhitespaceOnSave
-autocmd! BufWritePost *.py StripWhitespace
+"autocmd! BufEnter *.py EnableStripWhitespaceOnSave
+"autocmd! BufWritePost *.py StripWhitespace
 
 " nerdcommenter
 " let g:NERDRemoveExtraSpaces = 0
