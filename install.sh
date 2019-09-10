@@ -99,17 +99,13 @@ init()
 # 安装用于nvim的python插件
 ins_pytools()
 {
+    pip_source='-i https://pypi.douban.com/simple'
 	# for nvim
-	pip install -U pip neovim jedi flake8 pep8 pylint
+	pip install -U pip neovim jedi flake8 pep8 pylint $pip_source
 
 	# tools
 	#pip install thefuck pipreqs mycli alembic ipdb
-	pip install pipreqs mycli ipdb
-	if [[ -n $(python -V 2>&1 | grep -P '2\.7\.') ]]; then
-		pip install ipython==5.4.1
-	else
-		pip install ipython
-	fi
+	pip install -U pipreqs ipdb ipython $pip_source
 }
 
 # 安装nvim插件配置
@@ -147,6 +143,7 @@ OPT:
 	|- ins_nvim:                 安装nvim以及相关插件
 	   |- ins_nvim_plug_conf:    安装nvim插件配置
 
+    # 以下工具需以上工具安装后自行安装
 	ins_zsh_plug:       安装zsh的脚本，必须在安装zsh后执行，否则会阻碍oh-my-zsh的安装
 	ins_pytools:        安装python工具，在安装python虚拟环境后安装
 EOF
