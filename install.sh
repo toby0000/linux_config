@@ -80,8 +80,10 @@ ins_other()
 
 ins_zsh_plug()
 {
+    # ZSH_CUSTOM=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}
 	# 该函数必须在zsh安装完后安装，由于该函数会生成.oh-my-zsh目录，导致ins_zsh无法正常安装
-	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+    git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
 }
 
 # 用于装完系统后安装各类工具
@@ -105,7 +107,7 @@ ins_pytools()
 
 	# tools
 	#pip install thefuck pipreqs mycli alembic ipdb
-	pip install -U pipreqs ipdb ipython $pip_source
+	pip install -U pipreqs ipdb ipython ranger $pip_source
 }
 
 # 安装nvim插件配置
