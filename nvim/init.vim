@@ -400,8 +400,8 @@ let g:neomake_shell_enable_makers = ['shellcheck']
 autocmd! BufWritePost * Neomake
 
 " vim-better-whitespace
-"autocmd! BufEnter *.py EnableStripWhitespaceOnSave
-"autocmd! BufWritePost *.py StripWhitespace
+autocmd! BufEnter *.py EnableStripWhitespaceOnSave
+autocmd! BufWritePost *.py StripWhitespace
 
 " nerdcommenter
 " let g:NERDRemoveExtraSpaces = 0

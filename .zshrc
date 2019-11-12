@@ -53,7 +53,7 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git autojump colored-man-pages zsh_reload pip sudo \
     tmux docker docker-compose docker-machine \
-    extract django python celery supervisord zsh-syntax-highlighting catimg \
+    extract django python celery supervisor zsh-syntax-highlighting catimg \
     zsh-autosuggestions
     )
 
