@@ -2,5 +2,6 @@
     path = .gitconfig.local
 [core]
     editor = nvim
+    quotepath = false
 [push]
     default = simple
