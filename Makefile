@@ -22,6 +22,10 @@ install-pip:
 	rm -rf ~/.pip
 	ln -s `pwd`/.pip ~/.pip
 
+install-tmux:
+	rm -rf ~/.tmux.conf
+	ln -s `pwd`/.tmux.conf ~/.tmux.conf
+
 install-ins:
 	rm -rf `pwd`/.bin/install.sh
 	ln -s `pwd`/install.sh `pwd`/.bin/install.sh
