@@ -80,7 +80,7 @@ ins_other()
 
 ins_zsh_plug()
 {
-    # ZSH_CUSTOM=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}
+    ZSH_CUSTOM=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}
 	# 该函数必须在zsh安装完后安装，由于该函数会生成.oh-my-zsh目录，导致ins_zsh无法正常安装
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
     git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
