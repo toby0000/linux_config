@@ -19,9 +19,9 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'sjl/gundo.vim'
 " golang
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
-Plug 'stamblerre/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh'  }
-Plug 'deoplete-plugins/deoplete-go', { 'do': 'make' }
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
+" Plug 'stamblerre/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh'  }
+" Plug 'deoplete-plugins/deoplete-go', { 'do': 'make' }
 " js
 Plug 'pangloss/vim-javascript'
 Plug 'posva/vim-vue'
@@ -452,3 +452,7 @@ function! Zoom ()
 endfunction
 
 nmap <leader>z :call Zoom()<CR>
+let g:python3_host_prog = '~/.env/py3/bin/python'
+
+" IndentLines
+map <F9> :IndentLinesToggle<cr>
