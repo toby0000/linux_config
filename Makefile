@@ -1,5 +1,5 @@
 dotfiles: install-bin install-nvim install-zsh install-git \
-	install-pip install-ins
+	install-pip install-tmux install-ins
 
 install-bin:
 	rm -rf ~/.bin
