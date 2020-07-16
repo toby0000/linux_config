@@ -54,7 +54,7 @@ ZSH_THEME="robbyrussell"
 plugins=(git autojump colored-man-pages zsh_reload pip sudo \
     tmux docker docker-compose docker-machine \
     extract django python celery supervisor zsh-syntax-highlighting catimg \
-    zsh-autosuggestions
+    zsh-autosuggestions fzf
     )
 
 source $ZSH/oh-my-zsh.sh
@@ -91,9 +91,9 @@ source $ZSH/oh-my-zsh.sh
 # 修复win10 zsh autojump autojump_chpwd:4: nice(5) failed: operation not permitted 的错误
 # https://segmentfault.com/a/1190000010847216
 unsetopt BG_NICE
-[ -f ~/.fzf.zsh  ] && source ~/.fzf.zsh
+#[ -f ~/.fzf.zsh  ] && source ~/.fzf.zsh
 # 修复wsl python虚拟环境下无法使用fzf的问题
-export HISTCONTROL=ignoreboth:erasedups && setopt HIST_IGNORE_ALL_DUPS
+#export HISTCONTROL=ignoreboth:erasedups && setopt HIST_IGNORE_ALL_DUPS
 
 source ~/.bin/config.sh
 
