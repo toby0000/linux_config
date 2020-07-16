@@ -51,11 +51,26 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git autojump colored-man-pages zsh_reload pip sudo \
-    tmux docker docker-compose docker-machine \
-    extract django python celery supervisor zsh-syntax-highlighting catimg \
-    zsh-autosuggestions fzf
-    )
+plugins=(
+    # 常规插件
+    git autojump catimg fzf sudo tmux safe-paste \
+    # 用于编程语言的多版本安装
+    asdf \
+    # 提供src命令重载zsh
+    zsh_reload \
+    # docker插件
+    docker docker-compose docker-machine \
+    # python相关
+    pip django python celery supervisor \
+    # tar, gz, zip, rar 一键解压x命令
+    extract \
+    # 命令自动建议
+    zsh-autosuggestions \
+    # man高亮
+    colored-man-pages \
+    # 命令高亮
+    zsh-syntax-highlighting 
+)
 
 source $ZSH/oh-my-zsh.sh
 
