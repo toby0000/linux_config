@@ -1,45 +1,74 @@
 " vim-plug
 let plug_path='~/.config/nvim/plugged/'
 call plug#begin(plug_path)
+" 启动页
+"Plug 'mhinz/vim-startify'
+" 函数树
 Plug 'majutsushi/tagbar'
+" 文件树
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
+" 文件快速检索
 Plug 'kien/ctrlp.vim'
+" 关键字补全
 Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
+" 补全成对符号
 Plug 'jiangmiao/auto-pairs'
+" 光标快速移动
 Plug 'easymotion/vim-easymotion'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'ervandew/supertab'
-Plug 'neomake/neomake'
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" 优化tab(似乎于coc.nvim默认配置冲突)
+"Plug 'ervandew/supertab'
+" 快速注释
 Plug 'scrooloose/nerdcommenter'
+" 关键词检索
 Plug 'mileszs/ack.vim'
+" 自动对齐
 Plug 'junegunn/vim-easy-align'
+" git插件
 Plug 'tpope/vim-fugitive'
+" 成对符号操作
 Plug 'tpope/vim-surround'
+" 提升.重复操作的功能
 Plug 'tpope/vim-repeat'
+" 提升undo功能
 Plug 'sjl/gundo.vim'
+" 高亮选择单词
+Plug 'lfv89/vim-interestingwords'
+" 类似ctrlp
+Plug 'junegunn/fzf', { 'do': { -> fzf#install()   }   }
+Plug 'junegunn/fzf.vim'
 " golang
-" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
-" Plug 'stamblerre/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh'  }
-" Plug 'deoplete-plugins/deoplete-go', { 'do': 'make' }
+"Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
+"Plug 'deoplete-plugins/deoplete-go', {'do': 'make'}
 " js
-Plug 'pangloss/vim-javascript'
-Plug 'posva/vim-vue'
+"Plug 'pangloss/vim-javascript'
+"Plug 'posva/vim-vue'
 " python
-Plug 'davidhalter/jedi-vim'
-Plug 'zchee/deoplete-jedi'
-" view
+"Plug 'davidhalter/jedi-vim', {'for': 'python'}
+"Plug 'zchee/deoplete-jedi', {'for': 'python'}
+" 主题
 Plug 'tomasr/molokai'
+" 高亮尾部空白
 Plug 'ntpeters/vim-better-whitespace'
+" 缩进线
 Plug 'Yggdroot/indentLine'
-Plug 'kien/rainbow_parentheses.vim'
+" 高亮成对符号
+Plug 'luochen1990/rainbow'
 " markdown
-Plug 'plasticboy/vim-markdown'
-Plug 'suan/vim-instant-markdown'
+Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
+Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
+" json
+"Plug 'elzr/vim-json'
 " other
 Plug 'vim-scripts/nginx.vim'
-Plug plug_path.'Solarized'
-Plug plug_path.'mark.vim'
+"Plug plug_path.'Solarized'
+"Plug plug_path.'mark.vim'
+" coc.nvim
+" 智能补全：coc-tabnine
+" 目录树: coc-explorer
+" 补全: coc-snippets
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 
@@ -58,7 +87,7 @@ set backspace=indent,eol,start  " Backspace for dummies
 set linespace=0                 " No extra spaces between rows
 set number                      " Line numbers on
 set relativenumber              " 相对行号: 行号变成相对，可以用 nj/nk 进行跳转
-set showmatch                   " Show matching brackets/parenthesis
+set showmatch                   " 显示括号匹配
 
 " search
 set incsearch                   " Find as you type search
@@ -73,7 +102,7 @@ set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
 set scrolljump=5                " Lines to scroll when cursor leaves screen
 set scrolloff=3                 " Minimum lines to keep above and below cursor
 
-set autoindent                  " Indent at the same level of the previous line
+set autoindent                  " 继承前一行的缩进方式，适用于多行注释
 set smartindent
 set cindent
 "set cinoptions={0,1s,t0,n-2,p2s,(03s,=.5s,>1s,=1s,:1s
@@ -121,14 +150,13 @@ let mapleader = ','
 " 复制选中区到系统剪切板中
 noremap <leader>y "+y
 
-nnoremap <space> za
+" 折叠
+"nnoremap <space> za
 
 nnoremap <c-h> <c-w><c-h>
 nnoremap <c-l> <c-w><c-l>
 nnoremap <c-j> <c-w><c-j>
 nnoremap <c-k> <c-w><c-k>
-nnoremap H ^
-nnoremap L $
 
 nnoremap <leader>" ciw""<esc>P
 nnoremap <leader>' ciw''<esc>P
@@ -143,7 +171,7 @@ nnoremap <silent><leader>e :qa<cr>
 nnoremap <silent><leader>x :x<cr>
 " close <c-q> fun, avoid launch vitual mode
 nnoremap <c-q> <esc>
-" to sudo & write a file
+" 用sudo权限保存文件
 nnoremap <leader>W :execute 'w !sudo tee >/dev/null %' \| :e!<cr>
 nnoremap <leader>X :execute 'w !sudo tee >/dev/null %' \| :q!<cr>
 
@@ -230,17 +258,10 @@ autocmd InsertEnter * :set norelativenumber number
 autocmd InsertLeave * :set relativenumber
 
 " vimrc文件修改之后自动加载, linux
-autocmd! bufwritepost .init.vim source %
+autocmd! bufwritepost init.vim source %
 
 
 " set python config
-"autocmd BufNewFile,BufRead *.py exec ":call SetPythonConfig()"
-"func SetPythonConfig()
-"    set textwidth=79
-"    set fileformat=unix
-"    set foldmethod=indent
-"    nnoremap <space> za
-"endfunc
 autocmd BufNewFile,BufRead *.py
             \ set textwidth=79 |
             \ set fileformat=unix |
@@ -256,13 +277,13 @@ autocmd BufNewFile *.py call append(0, "\# -*- coding: utf-8 -*-")
 "            \ set tabstop=2 |
 "            \ set softtabstop=2 |
 "            \ set shiftwidth=2
+
+
 " nginx.conf 语法高亮, 必须在×.conf语法高亮之前配置
 au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/* setfiletype nginx
 
 " 语法高亮 .conf 文件
 autocmd BufRead,BufNewFile *.conf setf dosini
-
-"autocmd FileType python set makeprg=pylint\ --reports=n\ --msg-template=\"{path}:{line}:\ {msg_id}\ {symbol},\ {obj}\ {msg}\"\ %:p autocmd FileType python set errorformat=%f:%l:\ %m
 
 " ------------------------- other setting --------------------
 " F2 行号开关，用于鼠标复制代码用
@@ -294,7 +315,7 @@ au FileType go nnoremap <f5> :!go run %<cr>
 set pastetoggle=<F6>
 " disbale paste mode when leaving insert mode
 au InsertLeave * set nopaste
-" F6 set paste问题已解决, 粘贴代码前不需要按F5了
+" F6 set paste问题已解决, 粘贴代码前不需要按F6了
 " F6 粘贴模式paste_mode开关,用于有格式的代码粘贴
 " Automatically set paste mode in Vim when pasting in insert mode
 function! XTermPasteBegin()
@@ -307,21 +328,27 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
 " ------------------------- plugin setting ----------------------
 "
+" vim-interestingwords
+let g:interestingWordsCycleColors=1
+let g:interestingWordsDefaultMappings=0
+nnoremap <silent> <leader>m :call InterestingWords('n')<cr>
+vnoremap <silent> <leader>m :call InterestingWords('v')<cr>
+nnoremap <silent> <leader>M :call UncolorAllWords()<cr>
 " mark.vim
-nnoremap <leader>c :MarkClear<cr>
+"nnoremap <leader>c :MarkClear<cr>
+
+" 主题
+" colorscheme solarized
+" colorscheme distinguished
+" colorscheme github
+colorscheme molokai
+" colorscheme zenburn
+set t_Co=256
+" set term=screen-256color
 
 " molokai
 " let g:molokai_original=1
 let g:rehash256=1
-
-" solarized
- colorscheme solarized
-" colorscheme distinguished
-" colorscheme github
-" colorscheme molokai
-" colorscheme zenburn
-set t_Co=256
-" set term=screen-256color
 
 " tagbar
 nnoremap <leader>t :TagbarToggle<CR>
@@ -331,8 +358,6 @@ set updatetime=1000
 " NERDTree
 nnoremap <leader>nt :NERDTreeToggle<CR>
 nnoremap <leader>nf :NERDTreeFind<CR>
-
-let OmniCpp_NamespaceSearch = 2 "search namespaces in the current buffer and in include files
 
 " tag
 set tags=tags;
@@ -363,20 +388,11 @@ let g:jedi#completions_command = "<c-l>"
 let g:jedi#popup_on_dot = 0
 
 " supertab
-let g:SuperTabDefaultCompletionType = "<c-n>"
-let g:SuperTabContextDefaultCompletionType = "<c-n>"
+"let g:SuperTabDefaultCompletionType = "<c-n>"
+"let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
 " deoplete
 let g:deoplete#enable_at_startup=1
-
-" neomake
-"let g:neomake_python_enable_makers = ['pylint', 'flake8', 'pep8']
-let g:neomake_python_enable_makers = ['flake8', 'pep8']
-let g:neomake_shell_enable_makers = ['shellcheck']
-"let g:neomake_verbose=2
-"let g:neomake_echo_current_error=1
-"let g:neomake_open_list=1
-autocmd! BufWritePost * Neomake
 
 " vim-better-whitespace
 autocmd! BufEnter *.py EnableStripWhitespaceOnSave
@@ -388,7 +404,7 @@ let g:NERDDefaultAlign = 'left'
 
 " ack.vim
 let g:ackprg = 'ag --vimgrep --smart-case'
-nnoremap <leader>a :Ack! -w <c-r><c-w><cr>
+nnoremap <leader>s :Ack! -w <c-r><c-w><cr>
 
 " vim-easy-align
 xmap ga <Plug>(EasyAlign)
@@ -405,15 +421,14 @@ let g:ultisnips_python_style = 'sphinx'
 let g:instant_markdown_autostart = 0
 map <F8> :InstantMarkdownPreview<cr>
 
-" rainbow_parentheses
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+" rainbow
+let g:rainbow_active = 1
 
 " -------------------- other vim config ----------
 source ~/.config/nvim/google_python_style.vim
 
+
+" 最大化编辑的窗口
 function! Zoom ()
     " check if is the zoomed state (tabnumber > 1 && window == 1)
     if tabpagenr('$') > 1 && tabpagewinnr(tabpagenr(), '$') == 1
@@ -431,7 +446,175 @@ function! Zoom ()
 endfunction
 
 nmap <leader>z :call Zoom()<CR>
-let g:python3_host_prog = '~/.env/py3/bin/python'
+
+" 配置python主程序
+let g:python3_host_prog = '~/.env/py3/bin/python3'
 
 " IndentLines
 map <F9> :IndentLinesToggle<cr>
+
+" 注释回车不自动新增注释符号
+augroup Format-Options
+    autocmd!
+    autocmd BufEnter * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+    " This can be done as well instead of the previous line, for
+    " setting formatoptions as you choose:
+    autocmd BufEnter * setlocal formatoptions=crqn2l1j
+augroup END
+
+
+" ------------------------------- coc.nvim -------------------------------
+" TextEdit might fail if hidden is not set.
+set hidden
+
+" Some servers have issues with backup files, see #649.
+set nobackup
+set nowritebackup
+
+" Give more space for displaying messages.
+set cmdheight=2
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocActionAsync('doHover')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap keys for applying codeAction to the current buffer.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Map function and class text objects
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
+
+" Use CTRL-S for selections ranges.
+" Requires 'textDocument/selectionRange' support of language server.
+nmap <silent> <C-s> <Plug>(coc-range-select)
+xmap <silent> <C-s> <Plug>(coc-range-select)
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+
+" Add `:Fold` command to fold current buffer.
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" Add `:OR` command for organize imports of the current buffer.
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+" Add (Neo)Vim's native statusline support.
+" NOTE: Please see `:h coc-status` for integrations with external plugins that
+" provide custom statusline: lightline.vim, vim-airline.
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" Mappings for CoCList
+" Show all diagnostics.
+nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions.
+nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+" Show commands.
+nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document.
+nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols.
+nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list.
+nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
