@@ -14,13 +14,10 @@ Plug 'SirVer/ultisnips'
 Plug 'jiangmiao/auto-pairs'
 " 光标快速移动
 Plug 'easymotion/vim-easymotion'
-"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " 优化tab(似乎于coc.nvim默认配置冲突)
 "Plug 'ervandew/supertab'
 " 快速注释
 Plug 'scrooloose/nerdcommenter'
-" 关键词检索
-"Plug 'mileszs/ack.vim'
 " 自动对齐
 Plug 'junegunn/vim-easy-align'
 " git插件
@@ -33,6 +30,7 @@ Plug 'tpope/vim-repeat'
 Plug 'sjl/gundo.vim'
 " 高亮选择单词
 Plug 'lfv89/vim-interestingwords'
+"Plug plug_path.'mark.vim'
 " 模糊搜索
 "Plug 'junegunn/fzf', { 'do': { -> fzf#install()   }   }
 "Plug 'junegunn/fzf.vim'
@@ -56,7 +54,6 @@ Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 " other
 Plug 'vim-scripts/nginx.vim'
 
-"Plug plug_path.'mark.vim'
 " coc.nvim
 " 智能补全：coc-tabnine
 " 搜索: coc-list
@@ -360,39 +357,15 @@ set updatetime=1000
 nnoremap <leader>nt :NERDTreeToggle<CR>
 nnoremap <leader>nf :NERDTreeFind<CR>
 
-" tag
-set tags=tags;
-nmap <leader>j :tn<cr>
-nmap <leader>k :tp<cr>
-"nmap <leader>ts :ts<cr>
-
-" ctrlp
-""let g:ctrlp_by_filename = 1
-"let g:ctrlp_working_path_mode = 'rw'
-"let g:ctrlp_root_markers = ["tags", "cscope.out"]
-"let g:ctrlp_clear_cache_on_exit = 0
-"set wildignore=*.o,*.obj,*.d,*/.git/*,*.a,*.so,*.pyc,*/__pycache__/*,*/venv/*
-""nnoremap <leader>b :CtrlPBuffer<cr>
-""nnoremap <leader>u :CtrlPMRUFiles<cr>
-
 " easymotion
 map <leader><leader>h <plug>(easymotion-linebackward)
 map <leader><leader>l <plug>(easymotion-lineforward)
 map f <leader><leader>w
 map F <leader><leader>b
 
-" jedi-vim
-let g:jedi#completions_enabled = 0
-let g:jedi#popup_select_first = 0
-let g:jedi#completions_command = "<c-l>"
-let g:jedi#popup_on_dot = 0
-
 " supertab
 "let g:SuperTabDefaultCompletionType = "<c-n>"
 "let g:SuperTabContextDefaultCompletionType = "<c-n>"
-
-" deoplete
-let g:deoplete#enable_at_startup=1
 
 " vim-better-whitespace
 autocmd! BufEnter *.py EnableStripWhitespaceOnSave
@@ -401,10 +374,6 @@ autocmd! BufWritePost *.py StripWhitespace
 " nerdcommenter
 " let g:NERDRemoveExtraSpaces = 0
 let g:NERDDefaultAlign = 'left'
-
-" ack.vim
-"let g:ackprg = 'ag --vimgrep --smart-case'
-"nnoremap <leader>s :Ack! -w <c-r><c-w><cr>
 
 " vim-easy-align
 xmap ga <Plug>(EasyAlign)
@@ -622,25 +591,3 @@ nnoremap <silent><nowait> <space>g  :<C-u>CocList grep -w <c-r><c-w><CR>
 nnoremap <silent><nowait> <space>G  :<C-u>CocList grep <c-r><c-w><CR>
 nnoremap <silent><nowait> <space>f  :<C-u>CocList files<CR>
 nnoremap <silent><nowait> <space>l  :<C-u>CocList 
-
-
-" fzf.vim
-"let g:fzf_layout = { 'down': '35%'  }
-"nnoremap <leader>g :Rgw <c-r><c-w><cr>
-"command! -bang -nargs=* Rgw
-"  \ call fzf#vim#grep(
-"  \   'rg --column --line-number --no-heading --color=always --smart-case -w -- '.shellescape(<q-args>), 1,
-"  \   fzf#vim#with_preview(), <bang>0)
-"imap <c-x><c-k> <plug>(fzf-complete-word)
-"imap <c-x><c-f> <plug>(fzf-complete-path)
-"imap <c-x><c-l> <plug>(fzf-complete-line)
-
-"function! RipgrepFzf(query, fullscreen)
-"  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -w -- %s || true'
-"  let initial_command = printf(command_fmt, shellescape(a:query))
-"  let reload_command = printf(command_fmt, '{q}')
-"  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-"  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-"endfunction
-
-"command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
