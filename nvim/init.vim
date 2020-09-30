@@ -1,8 +1,6 @@
 " vim-plug
 let plug_path='~/.config/nvim/plugged/'
 call plug#begin(plug_path)
-" 启动页
-"Plug 'mhinz/vim-startify'
 " 函数树
 Plug 'majutsushi/tagbar'
 " 文件树
@@ -38,15 +36,10 @@ Plug 'lfv89/vim-interestingwords'
 " 类似ctrlp
 Plug 'junegunn/fzf', { 'do': { -> fzf#install()   }   }
 Plug 'junegunn/fzf.vim'
-" golang
-"Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
-"Plug 'deoplete-plugins/deoplete-go', {'do': 'make'}
-" js
-"Plug 'pangloss/vim-javascript'
-"Plug 'posva/vim-vue'
-" python
-"Plug 'davidhalter/jedi-vim', {'for': 'python'}
-"Plug 'zchee/deoplete-jedi', {'for': 'python'}
+" 启动页
+"Plug 'mhinz/vim-startify'
+" 状态栏
+Plug 'vim-airline/vim-airline'
 " 主题
 Plug 'tomasr/molokai'
 " 高亮尾部空白
@@ -58,10 +51,9 @@ Plug 'luochen1990/rainbow'
 " markdown
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
-" json
-"Plug 'elzr/vim-json'
 " other
 Plug 'vim-scripts/nginx.vim'
+
 "Plug plug_path.'Solarized'
 "Plug plug_path.'mark.vim'
 " coc.nvim
@@ -168,6 +160,7 @@ nnoremap <silent><leader>q :q<cr>
 nnoremap <silent><leader>Q :q!<cr>
 nnoremap <silent><leader>w :w<cr>
 nnoremap <silent><leader>e :qa<cr>
+nnoremap <silent><leader>E :qa<cr>
 nnoremap <silent><leader>x :x<cr>
 " close <c-q> fun, avoid launch vitual mode
 nnoremap <c-q> <esc>
@@ -618,3 +611,25 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+
+" fzf.vim
+let g:fzf_layout = { 'down': '35%'  }
+nnoremap <leader>g :Rgw <c-r><c-w><cr>
+command! -bang -nargs=* Rgw
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case -w -- '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview(), <bang>0)
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -w -- %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
