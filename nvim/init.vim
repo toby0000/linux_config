@@ -6,7 +6,7 @@ Plug 'majutsushi/tagbar'
 " 文件树
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 " 文件快速检索
-Plug 'kien/ctrlp.vim'
+"Plug 'kien/ctrlp.vim'
 " 关键字补全
 Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
@@ -20,7 +20,7 @@ Plug 'easymotion/vim-easymotion'
 " 快速注释
 Plug 'scrooloose/nerdcommenter'
 " 关键词检索
-Plug 'mileszs/ack.vim'
+"Plug 'mileszs/ack.vim'
 " 自动对齐
 Plug 'junegunn/vim-easy-align'
 " git插件
@@ -33,15 +33,17 @@ Plug 'tpope/vim-repeat'
 Plug 'sjl/gundo.vim'
 " 高亮选择单词
 Plug 'lfv89/vim-interestingwords'
-" 类似ctrlp
-Plug 'junegunn/fzf', { 'do': { -> fzf#install()   }   }
-Plug 'junegunn/fzf.vim'
+" 模糊搜索
+"Plug 'junegunn/fzf', { 'do': { -> fzf#install()   }   }
+"Plug 'junegunn/fzf.vim'
 " 启动页
-"Plug 'mhinz/vim-startify'
+Plug 'mhinz/vim-startify'
 " 状态栏
 Plug 'vim-airline/vim-airline'
 " 主题
 Plug 'tomasr/molokai'
+Plug 'altercation/vim-colors-solarized'
+Plug 'morhetz/gruvbox'
 " 高亮尾部空白
 Plug 'ntpeters/vim-better-whitespace'
 " 缩进线
@@ -54,10 +56,10 @@ Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 " other
 Plug 'vim-scripts/nginx.vim'
 
-"Plug plug_path.'Solarized'
 "Plug plug_path.'mark.vim'
 " coc.nvim
 " 智能补全：coc-tabnine
+" 搜索: coc-list
 " 目录树: coc-explorer
 " 补全: coc-snippets
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -71,7 +73,6 @@ syntax on
 syntax enable
 set undofile
 set mouse=                 " disable mouse usage
-set background=dark
 set mousehide               " Hide the mouse cursor while typing
 set cursorline                  " Highlight current line
 set showmode                    " Display the current mode
@@ -186,7 +187,9 @@ inoremap <c-b> <left>
 inoremap <c-f> <right>
 inoremap <c-a> <home>
 inoremap <c-e> <end>
-inoremap <c-d> <del>
+inoremap <c-h> <c-left>
+inoremap <c-l> <c-right>
+"inoremap <c-d> <del>
 inoremap <c-j> <esc>o
 
 " TAB
@@ -209,11 +212,13 @@ noremap <leader>9 9gt
 noremap <leader>0 :tablast<cr>
 
 "ex mode keymap
-cnoremap <c-d> <del>
+"cnoremap <c-d> <del>
 cnoremap <c-a> <Home>
 cnoremap <c-b> <left>
 cnoremap <c-f> <right>
-cnoremap <c-x> <c-f>
+cnoremap <c-h> <c-left>
+cnoremap <c-l> <c-right>
+"cnoremap <c-x> <c-f>
 
 " nvim/neovim terminal
 tnoremap <c-q> <c-\><c-n>
@@ -331,17 +336,20 @@ nnoremap <silent> <leader>M :call UncolorAllWords()<cr>
 "nnoremap <leader>c :MarkClear<cr>
 
 " 主题
-" colorscheme solarized
-" colorscheme distinguished
-" colorscheme github
-colorscheme molokai
-" colorscheme zenburn
+"colorscheme solarized
+colorscheme gruvbox
+"colorscheme molokai
+
+" solarized
+let g:solarized_termcolors=256
+" molokai
+let g:molokai_original=1
+let g:rehash256=1
+
+set background=dark
 set t_Co=256
 " set term=screen-256color
 
-" molokai
-" let g:molokai_original=1
-let g:rehash256=1
 
 " tagbar
 nnoremap <leader>t :TagbarToggle<CR>
@@ -359,14 +367,13 @@ nmap <leader>k :tp<cr>
 "nmap <leader>ts :ts<cr>
 
 " ctrlp
-"let g:ctrlp_map = '<leader>p'
-"let g:ctrlp_by_filename = 1
-let g:ctrlp_working_path_mode = 'rw'
-let g:ctrlp_root_markers = ["tags", "cscope.out"]
-let g:ctrlp_clear_cache_on_exit = 0
-set wildignore=*.o,*.obj,*.d,*/.git/*,*.a,*.so,*.pyc,*/__pycache__/*,*/venv/*
-"nnoremap <leader>b :CtrlPBuffer<cr>
-"nnoremap <leader>u :CtrlPMRUFiles<cr>
+""let g:ctrlp_by_filename = 1
+"let g:ctrlp_working_path_mode = 'rw'
+"let g:ctrlp_root_markers = ["tags", "cscope.out"]
+"let g:ctrlp_clear_cache_on_exit = 0
+"set wildignore=*.o,*.obj,*.d,*/.git/*,*.a,*.so,*.pyc,*/__pycache__/*,*/venv/*
+""nnoremap <leader>b :CtrlPBuffer<cr>
+""nnoremap <leader>u :CtrlPMRUFiles<cr>
 
 " easymotion
 map <leader><leader>h <plug>(easymotion-linebackward)
@@ -396,8 +403,8 @@ autocmd! BufWritePost *.py StripWhitespace
 let g:NERDDefaultAlign = 'left'
 
 " ack.vim
-let g:ackprg = 'ag --vimgrep --smart-case'
-nnoremap <leader>s :Ack! -w <c-r><c-w><cr>
+"let g:ackprg = 'ag --vimgrep --smart-case'
+"nnoremap <leader>s :Ack! -w <c-r><c-w><cr>
 
 " vim-easy-align
 xmap ga <Plug>(EasyAlign)
@@ -611,25 +618,29 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+nnoremap <silent><nowait> <space>g  :<C-u>CocList grep -w <c-r><c-w><CR>
+nnoremap <silent><nowait> <space>G  :<C-u>CocList grep <c-r><c-w><CR>
+nnoremap <silent><nowait> <space>f  :<C-u>CocList files<CR>
+nnoremap <silent><nowait> <space>l  :<C-u>CocList 
 
 
 " fzf.vim
-let g:fzf_layout = { 'down': '35%'  }
-nnoremap <leader>g :Rgw <c-r><c-w><cr>
-command! -bang -nargs=* Rgw
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case -w -- '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview(), <bang>0)
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-l> <plug>(fzf-complete-line)
+"let g:fzf_layout = { 'down': '35%'  }
+"nnoremap <leader>g :Rgw <c-r><c-w><cr>
+"command! -bang -nargs=* Rgw
+"  \ call fzf#vim#grep(
+"  \   'rg --column --line-number --no-heading --color=always --smart-case -w -- '.shellescape(<q-args>), 1,
+"  \   fzf#vim#with_preview(), <bang>0)
+"imap <c-x><c-k> <plug>(fzf-complete-word)
+"imap <c-x><c-f> <plug>(fzf-complete-path)
+"imap <c-x><c-l> <plug>(fzf-complete-line)
 
-function! RipgrepFzf(query, fullscreen)
-  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -w -- %s || true'
-  let initial_command = printf(command_fmt, shellescape(a:query))
-  let reload_command = printf(command_fmt, '{q}')
-  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-endfunction
+"function! RipgrepFzf(query, fullscreen)
+"  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -w -- %s || true'
+"  let initial_command = printf(command_fmt, shellescape(a:query))
+"  let reload_command = printf(command_fmt, '{q}')
+"  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+"  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+"endfunction
 
-command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+"command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
