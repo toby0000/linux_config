@@ -69,7 +69,9 @@ plugins=(
     # man高亮
     colored-man-pages \
     # 命令高亮
-    zsh-syntax-highlighting 
+    zsh-syntax-highlighting \
+    # python
+    pyenv
 )
 
 source $ZSH/oh-my-zsh.sh

@@ -39,8 +39,8 @@ Plug 'mhinz/vim-startify'
 " 状态栏
 Plug 'vim-airline/vim-airline'
 " 主题
-Plug 'tomasr/molokai'
-Plug 'altercation/vim-colors-solarized'
+"Plug 'tomasr/molokai'
+"Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
 " 高亮尾部空白
 Plug 'ntpeters/vim-better-whitespace'
@@ -56,7 +56,7 @@ Plug 'vim-scripts/nginx.vim'
 
 " coc.nvim
 " 智能补全：coc-tabnine
-" 搜索: coc-list
+" 搜索: coc-lists
 " 目录树: coc-explorer
 " 补全: coc-snippets
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
