@@ -158,7 +158,7 @@ nnoremap <silent><leader>q :q<cr>
 nnoremap <silent><leader>Q :q!<cr>
 nnoremap <silent><leader>w :w<cr>
 nnoremap <silent><leader>e :qa<cr>
-nnoremap <silent><leader>E :qa<cr>
+nnoremap <silent><leader>E :qa!<cr>
 nnoremap <silent><leader>x :x<cr>
 " close <c-q> fun, avoid launch vitual mode
 nnoremap <c-q> <esc>
