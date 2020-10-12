@@ -5,6 +5,3 @@
     quotepath = false
 [push]
     default = simple
-[user]
-	email = chuangbinli@webot.co
-	name = toby
