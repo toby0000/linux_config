@@ -114,7 +114,5 @@ unsetopt BG_NICE
 
 source ~/.bin/config.sh
 
-export PATH=$PATH:/usr/local/go/bin:~/go/bin
-
-export GO111MODULE=on
+export GO111MODULE=auto
 export GOPROXY=https://goproxy.io
