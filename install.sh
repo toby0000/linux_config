@@ -123,8 +123,10 @@ ins_nvim_plug_conf()
 # 安装tmux
 ins_tmux()
 {
-	sudo apt-get install -y tmux
-	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    sudo apt-get install -y tmux
+    # 安装tpm并自动安装tmux插件
+    if "test ! -d ~/.tmux/plugins/tpm" \
+           "run 'git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm && ~/.tmux/plugins/tpm/bin/install_plugins'"
 }
 
 help()
