@@ -30,7 +30,6 @@ Plug 'tpope/vim-repeat'
 Plug 'sjl/gundo.vim'
 " 高亮选择单词
 Plug 'lfv89/vim-interestingwords'
-"Plug plug_path.'mark.vim'
 " 模糊搜索
 "Plug 'junegunn/fzf', { 'do': { -> fzf#install()   }   }
 "Plug 'junegunn/fzf.vim'
@@ -48,6 +47,8 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'Yggdroot/indentLine'
 " 高亮成对符号
 Plug 'luochen1990/rainbow'
+" golang
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries'  }
 " markdown
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
@@ -105,7 +106,6 @@ set shiftwidth=4                " Use indents of 4 spaces
 set tabstop=4                   " An indentation every four columns
 set softtabstop=4               " Let backspace delete indent
 set shiftround
-set expandtab
 
 "set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 set laststatus=2
@@ -258,21 +258,18 @@ autocmd! bufwritepost init.vim source %
 
 " set python config
 autocmd BufNewFile,BufRead *.py
-            \ set textwidth=79 |
-            \ set fileformat=unix |
-            \ set foldmethod=indent |
-            \ set foldnestmax=2 |
-            \ set expandtab |  " Tabs are spaces, not tabs
-            \ set shiftround   " round indent to multiple of 'shiftwidth'"
-
-autocmd BufNewFile *.py call append(0, "\# -*- coding: utf-8 -*-")
+    \ set textwidth=79 |
+    \ set fileformat=unix |
+    \ set foldmethod=indent |
+    \ set foldnestmax=2 |
+    \ set expandtab |  " Tabs are spaces, not tabs
+    \ set shiftround   " round indent to multiple of 'shiftwidth'"
 
 " set web config
 "au BufNewFile,BufRead *.js,*.html,*.css
 "            \ set tabstop=2 |
 "            \ set softtabstop=2 |
 "            \ set shiftwidth=2
-
 
 " nginx.conf 语法高亮, 必须在×.conf语法高亮之前配置
 au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/* setfiletype nginx

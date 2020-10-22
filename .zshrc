@@ -72,6 +72,8 @@ plugins=(
     zsh-syntax-highlighting \
     # python
     pyenv
+    # golang
+    golang
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -115,4 +117,4 @@ unsetopt BG_NICE
 source ~/.bin/config.sh
 
 export GO111MODULE=auto
-export GOPROXY=https://goproxy.io
+export GOPROXY=https://goproxy.cn
