@@ -27,7 +27,7 @@ ins_nvim()
 	curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	# install nvim config && plugin
 	make -C $LINUX_CONFIG_PATH install-nvim
-	nvim -c 'PlugInstall'
+	nvim +PlugInstall +qall
 	# install nvim plug config
 	ins_nvim_plug_conf
 }
@@ -66,6 +66,7 @@ ins_other()
 	sudo apt-get install -y vim openssh-client openssh-server lrzsz
 	# tools
 	sudo apt-get install -y autojump silversearcher-ag fzf
+	sudo apt-get install -y tmux
 	# nvim
 	sudo apt-get install -y exuberant-ctags
 	# 神器jq: 格式化json显示，替换python -m json.tool
@@ -89,7 +90,6 @@ init()
 	ins_nvim
 	make -C $LINUX_CONFIG_PATH
 	ins_other
-	ins_tmux
 	# zsh必须在最后安装，由于它会将终端切到zsh，从而中断脚本
 	ins_zsh
 }
@@ -120,15 +120,6 @@ ins_nvim_plug_conf()
 }
 
 
-# 安装tmux
-ins_tmux()
-{
-    sudo apt-get install -y tmux
-    # 安装tpm并自动安装tmux插件
-    if "test ! -d ~/.tmux/plugins/tpm" \
-           "run 'git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm && ~/.tmux/plugins/tpm/bin/install_plugins'"
-}
-
 help()
 {
 	cat << EOF
@@ -138,7 +129,6 @@ OPT:
 	|- ins_python:               安装python以及虚拟环境
 	|- ins_nvim:                 安装nvim以及相关插件
 	   |- ins_nvim_plug_conf:    安装nvim插件配置
-	|- ins_tmux:                 安装tmux
 	|- ins_zsh:                  安装zsh
 
     # 以下工具需以上工具安装后自行安装
