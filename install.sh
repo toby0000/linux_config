@@ -40,6 +40,7 @@ ins_python()
 	sudo pip3 install virtualenv $PIP_SOURCE
 	mkdir -p ~/.env
 	virtualenv -p python3 ~/.env/py3
+	git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 }
 
 ins_zsh()
