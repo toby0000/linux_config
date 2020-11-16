@@ -4,7 +4,7 @@ call plug#begin(plug_path)
 " 函数树
 Plug 'majutsushi/tagbar'
 " 文件树
-Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
+"Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 " 文件快速检索
 "Plug 'kien/ctrlp.vim'
 " 关键字补全
@@ -56,12 +56,27 @@ Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 Plug 'vim-scripts/nginx.vim'
 
 " coc.nvim
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+call plug#end()
+
+
+" coc插件, coc启动时自动安装
 " 智能补全：coc-tabnine
 " 搜索: coc-lists
 " 目录树: coc-explorer
 " 片段: coc-snippets
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-call plug#end()
+" vue语言服务器: coc-vetur
+let g:coc_global_extensions = [
+	\ 'coc-tabnine',
+	\ 'coc-lists',
+	\ 'coc-snippets',
+	\ 'coc-git',
+	\ 'coc-explorer',
+	\ 'coc-json',
+	\ 'coc-python',
+	\ 'coc-go',
+	\ 'coc-vetur',
+\ ]
 
 
 " ------------------------------- common setting ------------------------
@@ -571,8 +586,8 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " Show all diagnostics.
 nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions.
-nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
-" Show commands.
+"nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+"" Show commands.
 nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document.
 nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
@@ -623,3 +638,7 @@ function! s:check_back_space() abort
 endfunction
 
 let g:coc_snippet_next = '<tab>'
+
+
+" ------------------------------- coc-explorer -------------------------------
+nmap <space>e :CocCommand explorer<CR>

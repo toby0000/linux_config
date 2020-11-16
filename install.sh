@@ -27,7 +27,9 @@ ins_nvim()
 	curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	# install nvim config && plugin
 	make -C $LINUX_CONFIG_PATH install-nvim
-	nvim +PlugInstall +qall
+	# 安装插件
+	#nvim +PlugInstall +qall
+	nvim -c 'PlugInstall|qall'
 	# install nvim plug config
 	ins_nvim_plug_conf
 }
