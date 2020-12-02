@@ -29,7 +29,10 @@ Plug 'tpope/vim-repeat'
 " 提升undo功能
 Plug 'sjl/gundo.vim'
 " 高亮选择单词
-Plug 'lfv89/vim-interestingwords'
+"Plug 'lfv89/vim-interestingwords'
+" vim-mark 2.8.5
+Plug 'inkarkat/vim-mark', {'commit': '0f8628db067810b933f0dedcfb326cab4b6dd9cc'}
+
 " 模糊搜索
 "Plug 'junegunn/fzf', { 'do': { -> fzf#install()   }   }
 "Plug 'junegunn/fzf.vim'
@@ -121,6 +124,7 @@ set shiftwidth=4                " Use indents of 4 spaces
 set tabstop=4                   " An indentation every four columns
 set softtabstop=4               " Let backspace delete indent
 set shiftround
+set expandtab                   " Tabs are spaces, not tabs
 
 "set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 set laststatus=2
@@ -336,13 +340,11 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 " ------------------------- plugin setting ----------------------
 "
 " vim-interestingwords
-let g:interestingWordsCycleColors=1
-let g:interestingWordsDefaultMappings=0
-nnoremap <silent> <leader>m :call InterestingWords('n')<cr>
-vnoremap <silent> <leader>m :call InterestingWords('v')<cr>
-nnoremap <silent> <leader>M :call UncolorAllWords()<cr>
-" mark.vim
-"nnoremap <leader>c :MarkClear<cr>
+"let g:interestingWordsCycleColors=1
+"let g:interestingWordsDefaultMappings=0
+"nnoremap <silent> <leader>m :call InterestingWords('n')<cr>
+"vnoremap <silent> <leader>m :call InterestingWords('v')<cr>
+"nnoremap <silent> <leader>M :call UncolorAllWords()<cr>
 
 " 主题
 "colorscheme solarized
@@ -642,3 +644,8 @@ let g:coc_snippet_next = '<tab>'
 
 " ------------------------------- coc-explorer -------------------------------
 nmap <space>e :CocCommand explorer<CR>
+
+
+" ------------------------------- coc-highlight -------------------------------
+"set termguicolors
+"autocmd CursorHold * silent call CocActionAsync('highlight')
