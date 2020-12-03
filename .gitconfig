@@ -5,3 +5,6 @@
     quotepath = false
 [push]
     default = simple
+[user]
+	email = toby.lee@foxmail.com
+	name = toby

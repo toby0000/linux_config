@@ -5,3 +5,4 @@ local_config.sh
 .bin/install.sh
 # zsh pip plugin install cache
 .pip/zsh-cache
+nvim/.netrwhist
