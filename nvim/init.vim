@@ -76,9 +76,13 @@ let g:coc_global_extensions = [
 	\ 'coc-git',
 	\ 'coc-explorer',
 	\ 'coc-json',
-	\ 'coc-python',
+	\ 'coc-pyright',
 	\ 'coc-go',
 	\ 'coc-vetur',
+	\ 'coc-tsserver',
+	\ 'coc-html',
+	\ 'coc-css',
+	\ 'coc-yaml',
 \ ]
 
 
@@ -158,6 +162,8 @@ let mapleader = ','
 
 " 复制选中区到系统剪切板中
 noremap <leader>y "+y
+nnoremap <silent> <leader>y :call system('/mnt/c/Windows/System32/clip.exe', @0)<CR>
+vnoremap <silent> <leader>y :call system('/mnt/c/Windows/System32/clip.exe', @0)<CR>
 
 " 折叠
 "nnoremap <space> za
