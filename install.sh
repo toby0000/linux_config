@@ -68,7 +68,7 @@ ins_other()
 	# common
 	sudo apt-get install -y vim openssh-client openssh-server lrzsz
 	# tools
-	sudo apt-get install -y autojump silversearcher-ag fzf
+	sudo apt-get install -y autojump silversearcher-ag ripgrep fzf
 	sudo apt-get install -y tmux
 	# nvim
 	sudo apt-get install -y exuberant-ctags
