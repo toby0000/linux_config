@@ -128,7 +128,6 @@ set shiftwidth=4                " Use indents of 4 spaces
 set tabstop=4                   " An indentation every four columns
 set softtabstop=4               " Let backspace delete indent
 set shiftround
-set expandtab                   " Tabs are spaces, not tabs
 
 "set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 set laststatus=2
