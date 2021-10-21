@@ -187,12 +187,12 @@ nnoremap <leader>< ciw<><esc>P
 nnoremap <leader>( ciw()<esc>P
 nnoremap <leader>[ ciw[]<esc>P
 nnoremap <leader>{ ciw{}<esc>P
-nnoremap <silent><leader>q :q<cr>
-nnoremap <silent><leader>Q :q!<cr>
-nnoremap <silent><leader>s :w<cr>
-nnoremap <silent><leader>e :qa<cr>
-nnoremap <silent><leader>E :qa!<cr>
-nnoremap <silent><leader>x :x<cr>
+nnoremap <silent>;q :q<cr>
+nnoremap <silent>;Q :q!<cr>
+nnoremap <silent>;w :w<cr>
+nnoremap <silent>;e :qa<cr>
+nnoremap <silent>;E :qa!<cr>
+nnoremap <silent>;x :x<cr>
 " close <c-q> fun, avoid launch vitual mode
 nnoremap <c-q> <esc>
 " 用sudo权限保存文件
