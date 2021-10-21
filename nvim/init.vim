@@ -23,6 +23,8 @@ Plug 'bkad/CamelCaseMotion'
 Plug 'tpope/vim-commentary'
 " 自动对齐
 Plug 'junegunn/vim-easy-align'
+" 多光标
+Plug 'terryma/vim-multiple-cursors'
 " git插件
 Plug 'tpope/vim-fugitive'
 " 成对符号操作
@@ -86,6 +88,7 @@ let g:coc_global_extensions = [
 	\ 'coc-html',
 	\ 'coc-css',
 	\ 'coc-yaml',
+	\ 'coc-thrift-syntax-support',
 \ ]
 
 
