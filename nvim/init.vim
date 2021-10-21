@@ -14,10 +14,13 @@ Plug 'honza/vim-snippets'
 Plug 'jiangmiao/auto-pairs'
 " 光标快速移动
 Plug 'easymotion/vim-easymotion'
-" 优化tab(似乎于coc.nvim默认配置冲突)
+" 光标移动
+Plug 'bkad/CamelCaseMotion'
+"优化tab(似乎于coc.nvim默认配置冲突)
 "Plug 'ervandew/supertab'
 " 快速注释
-Plug 'scrooloose/nerdcommenter'
+"Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-commentary'
 " 自动对齐
 Plug 'junegunn/vim-easy-align'
 " git插件
@@ -181,7 +184,7 @@ nnoremap <leader>[ ciw[]<esc>P
 nnoremap <leader>{ ciw{}<esc>P
 nnoremap <silent><leader>q :q<cr>
 nnoremap <silent><leader>Q :q!<cr>
-nnoremap <silent><leader>w :w<cr>
+nnoremap <silent><leader>s :w<cr>
 nnoremap <silent><leader>e :qa<cr>
 nnoremap <silent><leader>E :qa!<cr>
 nnoremap <silent><leader>x :x<cr>
@@ -452,6 +455,9 @@ augroup Format-Options
     autocmd BufEnter * setlocal formatoptions=crqn2l1j
 augroup END
 
+
+" ------------------------------- CamelCaseMotion -------------------------------
+let g:camelcasemotion_key = '<leader>'
 
 " ------------------------------- coc.nvim -------------------------------
 " TextEdit might fail if hidden is not set.
