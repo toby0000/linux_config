@@ -24,7 +24,7 @@ Plug 'tpope/vim-commentary'
 " 自动对齐
 Plug 'junegunn/vim-easy-align'
 " 多光标
-Plug 'terryma/vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi'
 " git插件
 Plug 'tpope/vim-fugitive'
 " 成对符号操作
@@ -179,6 +179,8 @@ nnoremap <c-l> <c-w><c-l>
 nnoremap <c-j> <c-w><c-j>
 nnoremap <c-k> <c-w><c-k>
 
+nnoremap H ^
+nnoremap L $
 nnoremap <leader>" ciw""<esc>P
 nnoremap <leader>' ciw''<esc>P
 nnoremap <leader>< ciw<><esc>P
