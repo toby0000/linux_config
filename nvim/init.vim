@@ -313,7 +313,7 @@ autocmd BufRead,BufNewFile *.conf setf dosini
 " ------------------------- other setting --------------------
 " F2 行号开关，用于鼠标复制代码用
 " 为方便复制，用<F2>开启/关闭行号显示:
-function! HideNumber()
+function! HideNumberAndSign()
     if(&relativenumber == &number)
         set relativenumber! number!
     elseif(&number)
@@ -321,9 +321,14 @@ function! HideNumber()
     else
         set relativenumber!
     endif
+	if(&number)
+		set signcolumn=yes
+	else
+		set signcolumn=no
+	endif
     set number?
 endfunc
-nnoremap <F2> :call HideNumber()<CR>
+nnoremap <F2> :call HideNumberAndSign()<CR>
 " F3 显示可打印字符开关
 nnoremap <F3> :set list! list?<CR>
 " F4 换行开关
@@ -463,6 +468,13 @@ augroup END
 
 " ------------------------------- CamelCaseMotion -------------------------------
 let g:camelcasemotion_key = '<leader>'
+
+
+" ------------------------------- fugitive -------------------------------
+nnoremap <leader>gd :Gdiff!<CR>
+nnoremap <silent>gh :diffget //2<CR>
+nnoremap <silent>gl :diffget //3<CR>
+
 
 " ------------------------------- coc.nvim -------------------------------
 " TextEdit might fail if hidden is not set.
