@@ -179,6 +179,7 @@ nnoremap <c-l> <c-w><c-l>
 nnoremap <c-j> <c-w><c-j>
 nnoremap <c-k> <c-w><c-k>
 
+nnoremap Q <Nop>
 nnoremap H ^
 nnoremap L $
 nnoremap <leader>" ciw""<esc>P
