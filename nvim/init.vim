@@ -220,8 +220,8 @@ inoremap <c-a> <home>
 inoremap <c-e> <end>
 inoremap <c-h> <c-left>
 inoremap <c-l> <c-right>
-"inoremap <c-d> <del>
-inoremap <c-j> <esc>o
+" inoremap <c-d> <del>
+" inoremap <c-j> <esc>o
 
 " TAB
 map <silent><c-b> :tabnext<cr>
@@ -279,6 +279,11 @@ set colorcolumn=80
 " ---------------------- event -------------------------------
 "
 autocmd BufWritePost *.md :silent!%s/\t/    /g
+autocmd BufWritePost *.go :silent call s:gofmt()
+function! s:gofmt()
+	!go fmt %
+	:e
+endfunction
 
 " 插入模式下用绝对行号, 普通模式下用相对
 au FocusLost * :set norelativenumber number
@@ -448,7 +453,7 @@ function! Zoom ()
     endif
 endfunction
 
-nmap <leader>z :call Zoom()<CR>
+nmap ;z :call Zoom()<CR>
 
 " 配置python主程序
 let g:python3_host_prog = '~/.env/py3/bin/python3'
