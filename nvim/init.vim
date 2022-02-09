@@ -1,8 +1,10 @@
 " vim-plug
 let plug_path='~/.config/nvim/plugged/'
 call plug#begin(plug_path)
+" Plug 'kamykn/spelunker.vim'
 " 函数树
 Plug 'majutsushi/tagbar'
+Plug 'liuchengxu/vista.vim'
 " 文件树
 "Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 " 文件快速检索
@@ -45,6 +47,7 @@ Plug 'inkarkat/vim-mark', {'commit': '0f8628db067810b933f0dedcfb326cab4b6dd9cc'}
 Plug 'mhinz/vim-startify'
 " 状态栏
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 " 主题
 "Plug 'tomasr/molokai'
 "Plug 'altercation/vim-colors-solarized'
@@ -56,7 +59,7 @@ Plug 'Yggdroot/indentLine'
 " 高亮成对符号
 Plug 'luochen1990/rainbow'
 " golang
-"Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries'  }
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries'  }
 " markdown
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
@@ -90,6 +93,7 @@ let g:coc_global_extensions = [
 	\ 'coc-yaml',
 	\ 'coc-thrift-syntax-support',
 \ ]
+" coc-spell-checker
 
 
 " ------------------------------- common setting ------------------------
@@ -279,7 +283,7 @@ set colorcolumn=80
 " ---------------------- event -------------------------------
 "
 autocmd BufWritePost *.md :silent!%s/\t/    /g
-autocmd BufWritePost *.go :silent call s:gofmt()
+" autocmd BufWritePost *.go :silent call s:gofmt()
 function! s:gofmt()
 	!go fmt %
 	:e
