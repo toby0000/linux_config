@@ -56,12 +56,10 @@ plugins=(
     git autojump catimg fzf sudo tmux safe-paste \
     # 用于编程语言的多版本安装
     asdf \
-    # 提供src命令重载zsh
-    zsh_reload \
     # docker插件
     docker docker-compose docker-machine \
     # python相关
-    pip django python celery supervisor \
+    pip python celery supervisor \
     # tar, gz, zip, rar 一键解压x命令
     extract \
     # 命令自动建议
@@ -115,6 +113,7 @@ unsetopt BG_NICE
 #export HISTCONTROL=ignoreboth:erasedups && setopt HIST_IGNORE_ALL_DUPS
 
 source ~/.bin/config.sh
+export PATH=$PATH:/usr/local/go/bin
 
 export GO111MODULE=auto
 export GOPROXY=https://goproxy.cn

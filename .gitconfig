@@ -2,7 +2,7 @@
     path = .gitconfig.local
 [core]
     editor = nvim
-    quotepath = false
+    #quotepath = false
 [push]
     default = simple
 [user]
