@@ -67,4 +67,3 @@ unalias pip > /dev/null 2>&1
 alias myip="curl -i http://ip.cn"
 # for wsl
 alias mylocalip="hostname -I | awk '{print $1}'"
-alias myhostip="cat /etc/resolv.conf | grep nameserver | awk '{ print $2 }'"

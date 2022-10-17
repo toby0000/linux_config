@@ -8,3 +8,5 @@
 [user]
 	email = toby.lee@foxmail.com
 	name = toby
+[safe]
+	directory = /mnt/d/wsl/myproject/abound_web
