@@ -1,12 +1,7 @@
 [include]
     path = .gitconfig.local
-[core]
-    editor = nvim
-    #quotepath = false
 [push]
     default = simple
 [user]
 	email = toby.lee@foxmail.com
 	name = toby
-[safe]
-	directory = /mnt/d/wsl/myproject/abound_web
