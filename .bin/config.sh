@@ -65,5 +65,10 @@ fi
 unalias pip > /dev/null 2>&1
 
 alias myip="curl -i http://ip.cn"
-# for wsl
-alias mylocalip="hostname -I | awk '{print $1}'"
+
+mylocalip() {
+	# window ip
+	echo "Window Host ip: $(cat /etc/resolv.conf | grep nameserver | awk '{ print $2 }')"
+	# wsl ip
+	echo "WSL client ip: $(hostname -I | awk '{print $1}')"
+}

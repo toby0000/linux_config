@@ -61,13 +61,14 @@ Plug 'luochen1990/rainbow'
 " golang
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries'  }
 " markdown
-Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
-Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
+" Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
+" Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 " other
 Plug 'vim-scripts/nginx.vim'
 
 " coc.nvim
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 call plug#end()
 
 
@@ -430,8 +431,8 @@ let g:ultisnips_python_style = 'sphinx'
 
 " markdown
 " don't auto open chrome for preview
-let g:instant_markdown_autostart = 0
-map <F8> :InstantMarkdownPreview<cr>
+" let g:instant_markdown_autostart = 0
+" map <F8> :InstantMarkdownPreview<cr>
 
 " rainbow
 let g:rainbow_active = 1
@@ -460,7 +461,7 @@ endfunction
 nmap ;z :call Zoom()<CR>
 
 " 配置python主程序
-let g:python3_host_prog = '~/.env/py3/bin/python3'
+let g:python3_host_prog = '/usr/bin/python'
 
 " IndentLines
 map <F9> :IndentLinesToggle<cr>

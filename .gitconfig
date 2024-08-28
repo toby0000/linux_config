@@ -2,7 +2,8 @@
     path = .gitconfig.local
 [core]
     editor = nvim
-    #quotepath = false
+	# 支持中文
+    quotepath = false
 [push]
     default = simple
 [user]
