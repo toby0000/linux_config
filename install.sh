@@ -9,31 +9,6 @@ set -e
 LINUX_CONFIG_PATH=$(dirname $(readlink -f $0))
 PIP_SOURCE='-i https://pypi.douban.com/simple'
 
-ins_nvim()
-{
-	sudo apt-get install -y neovim
-
-	# TODO: 待测试
-	# ubuntu 18以上版本会自动设置nvim为默认编辑器
-	# sudo update-alternatives --install /usr/bin/vi vi /usr/bin/nvim 60
-	# sudo update-alternatives --config vi
-	# sudo update-alternatives --install /usr/bin/vim vim /usr/bin/nvim 60
-	# sudo update-alternatives --config vim
-	# sudo update-alternatives --install /usr/bin/editor editor /usr/bin/nvim 60
-	# sudo update-alternatives --config editor
-
-	# install plug.vim
-	sudo apt-get install -y curl
-	curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	# install nvim config && plugin
-	make -C $LINUX_CONFIG_PATH install-nvim
-	# 安装插件
-	#nvim +PlugInstall +qall
-	nvim -c 'PlugInstall|qall'
-	# install nvim plug config
-	ins_nvim_plug_conf
-}
-
 ins_python()
 {
 	make -C $LINUX_CONFIG_PATH install-pip
@@ -64,10 +39,8 @@ ins_other()
 	# common
 	sudo apt-get install -y vim openssh-client openssh-server lrzsz
 	# tools
-	sudo apt-get install -y autojump silversearcher-ag ripgrep fzf
+	sudo apt-get install -y autojump ripgrep fzf
 	sudo apt-get install -y tmux
-	# nvim
-	sudo apt-get install -y exuberant-ctags
 	# 神器jq: 格式化json显示，替换python -m json.tool
 	# tig: 交互式的git
 	sudo apt-get install -y jq tig mycli
@@ -86,48 +59,19 @@ init()
 {
 	sudo apt update
 	ins_python
-	ins_nvim
 	make -C $LINUX_CONFIG_PATH
 	ins_other
 	# zsh必须在最后安装，由于它会将终端切到zsh，从而中断脚本
 	ins_zsh
 }
 
-# 安装用于nvim的python插件
-ins_pytools()
-{
-	# for nvim
-	pip install -U pip neovim jedi flake8 pep8 pylint $PIP_SOURCE
-
-	# tools
-	#pip install thefuck pipreqs mycli alembic ipdb
-	pip install -U pipreqs ipdb ipython ranger $PIP_SOURCE
-}
-
-# 安装nvim插件配置
-ins_nvim_plug_conf()
-{
-	py_snip=$LINUX_CONFIG_PATH/nvim/plugged/vim-snippets/UltiSnips/python.snippets
-	py_snip_bak=$LINUX_CONFIG_PATH/nvim/plugged/vim-snippets/UltiSnips/python.snippets.bak
-	diy_py_snip=$LINUX_CONFIG_PATH/nvim/python.snippets
-	if [[ -z $(grep "# DIY" $py_snip) ]]; then
-		cp $py_snip $py_snip_bak
-	else
-		cp $py_snip_bak $py_snip
-	fi
-	cat $diy_py_snip >> $py_snip
-}
-
-
 help()
 {
 	cat << EOF
 Usage: ./install.sh [OPT]
 OPT:
-	init:                        执行ins_python, ins_nvim, ins_zsh, ins_other, make
+	init:                        执行ins_python, ins_zsh, ins_other, make
 	|- ins_python:               安装python以及虚拟环境
-	|- ins_nvim:                 安装nvim以及相关插件
-	   |- ins_nvim_plug_conf:    安装nvim插件配置
 	|- ins_zsh:                  安装zsh
 
     # 以下工具需以上工具安装后自行安装

@@ -2,11 +2,7 @@
 在ubuntu上自动安装和配置相关开发工具
 
 # 要求
-- ubuntu 18
-
-## 主要原因
-1. 由于ubuntu 18以下版本安装nvim无法通过apt直接下载。
-2. nvim部分插件要求python3.6以上，由于ubuntu 18以下版本apt下载默认最新为3.5
+- ubuntu 22
 
 # 说明
 install.sh: 用于安装各类工具

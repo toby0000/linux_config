@@ -29,12 +29,6 @@ alias fd='find -type d -name'
 alias ff='find -type f -name'
 alias fgrep='find -name "*.[c|h]" -o -name "*.cpp" -o -name "*.java" | xargs grep --color -Hn'
 
-# nvim config
-if which nvim > /dev/null 2>&1; then
-	alias vi='nvim'
-	alias vim='nvim'
-fi
-
 # python config
 alias ls='ls --hide="*.pyc" --color'
 alias py3='source ~/.env/py3/bin/activate'
@@ -47,9 +41,6 @@ gpip() {
 	PIP_REQUIRE_VIRTUALENV="" pip "$@"
 
 }
-
-# nvim
-VIMRUNTIME="$(nvim -e --cmd 'echo $VIMRUNTIME|quit' 2>&1)"
 
 # config local
 LOCAL_CONFIG=local_config.sh

@@ -1,14 +1,9 @@
-dotfiles: install-bin install-nvim install-zsh install-git \
+dotfiles: install-bin install-zsh install-git \
 	install-pip install-tmux install-ins
 
 install-bin:
 	rm -rf ~/.bin
 	ln -s `pwd`/.bin ~/.bin
-
-install-nvim:
-	rm -rf ~/.config/nvim
-	mkdir -p  ~/.config
-	ln -s `pwd`/nvim ~/.config/nvim
 
 install-zsh:
 	rm -rf ~/.zshrc

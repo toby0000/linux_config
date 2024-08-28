@@ -1,7 +1,7 @@
 [include]
     path = .gitconfig.local
 [core]
-    editor = nvim
+    editor = vim
 	# 支持中文
     quotepath = false
 [push]
