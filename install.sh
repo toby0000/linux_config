@@ -12,7 +12,7 @@ PIP_SOURCE='-i https://pypi.douban.com/simple'
 ins_python()
 {
 	make -C $LINUX_CONFIG_PATH install-pip
-	sudo pip3 install -U pip $PIP_SOURCE
+	# sudo pip3 install -U pip $PIP_SOURCE
 	git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 }
 
@@ -51,7 +51,7 @@ ins_zsh_plug()
 	ZSH_CUSTOM=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}
 	# 该函数必须在zsh安装完后安装，由于该函数会生成.oh-my-zsh目录，导致ins_zsh无法正常安装
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
-	git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
+	git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
 }
 
 # 用于装完系统后安装各类工具
@@ -76,7 +76,6 @@ OPT:
 
     # 以下工具需以上工具安装后自行安装
 	ins_zsh_plug:       安装zsh的脚本，必须在安装zsh后执行，否则会阻碍oh-my-zsh的安装
-	ins_pytools:        安装python工具，在安装python虚拟环境后安装
 	ins_fzf:            安装fzf
 EOF
 }

@@ -9,5 +9,7 @@
 [user]
 	email = toby.lee@foxmail.com
 	name = toby
-[safe]
-	directory = /mnt/d/wsl/myproject/abound_web
+;[https "https://github.com"]
+;	proxy = socks5://192.168.31.98:10808
+;[http "https://github.com"]
+;	proxy = socks5://192.168.31.98:10808
