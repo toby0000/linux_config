@@ -24,23 +24,11 @@ export TERM=xterm-256color
 export HISTTIMEFORMAT='%F %T'       # set time format of history record
 export HISTCONTROL=ignoredups       # history record ignoredups repeat cmd
 
-alias fn='find -name'
-alias fd='find -type d -name'
-alias ff='find -type f -name'
-alias fgrep='find -name "*.[c|h]" -o -name "*.cpp" -o -name "*.java" | xargs grep --color -Hn'
-
 # python config
 alias ls='ls --hide="*.pyc" --color'
-alias py3='source ~/.env/py3/bin/activate'
-alias venv='source venv/bin/activate'
+alias venv='source .venv/bin/activate'
 # pip必须在virtualenv环境下执行
-# http://pythonguidecn.readthedocs.io/zh/latest/dev/pip-virtualenv.html
-export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
 export PIP_REQUIRE_VIRTUALENV=true
-gpip() {
-	PIP_REQUIRE_VIRTUALENV="" pip "$@"
-
-}
 
 # config local
 LOCAL_CONFIG=local_config.sh
