@@ -53,11 +53,10 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     # 常规插件
-    git autojump catimg fzf sudo tmux safe-paste \
-    # 用于编程语言的多版本安装
-    asdf \
+    git autojump fzf sudo tmux \
+    catimg safe-paste \
     # docker插件
-    docker docker-compose docker-machine \
+    docker docker-compose \
     # python相关
     pip python celery supervisor \
     # tar, gz, zip, rar 一键解压x命令
@@ -69,7 +68,7 @@ plugins=(
     # 命令高亮
     zsh-syntax-highlighting \
     # python
-    pyenv
+    uv
     # golang
     golang
 )
@@ -120,3 +119,5 @@ export GOPROXY=https://goproxy.cn
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+. "$HOME/.local/bin/env"
