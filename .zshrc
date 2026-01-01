@@ -115,7 +115,7 @@ source ~/.bin/config.sh
 export PATH=$PATH:/usr/local/go/bin
 
 export GOPROXY=https://goproxy.cn
-export UV_DEFAULT_INDEX=https://mirrors.aliyun.com/pypi/simple/
+export UV_INDEX_URL=https://mirrors.aliyun.com/pypi/simple/
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
